@@ -5,3 +5,9 @@ body{
 footer p{
 	float: right;
 }
+
+.hidden-card{
+	width: 9%;
+	padding: 1%;
+}
+
