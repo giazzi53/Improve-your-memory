@@ -4,7 +4,6 @@
 	<meta charset = "utf-8" author = "Guilherme Giazzi, Matheus Lança e André Vinicius">
 	<link rel="stylesheet" type="text/css" href="jogo.css">
 	<title>Improve your memory - Jogo</title>
-	<script src="jogo.js"></script>
 </head>
 
 <body>
@@ -24,6 +23,29 @@
 		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(9)">
 
 	</div>
+	<button id="modalBtn" class="button">Abre Pergunta</button>
+
+	  <div id="simpleModal" class="modal">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	          <span class="closeBtn">&times;</span>
+	          <h2>Pergunta!</h2>
+	      </div>
+	      <div class="modal-body">
+			<form>
+			  <input type="radio" name="gender" value="male"> Pergunta A<br>
+			  <input type="radio" name="gender" value="female"> Pergunta B<br>
+			  <input type="radio" name="gender" value="other"> Pergunta C<br>
+			  <input type="radio" name="gender" value="other"> Pergunta D
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <input type="button" name="" class="button" value="Confirma resposta" onclick="closeModal()">
+	      </div>
+	    </div>
+	  </div>
+
+	<script src="jogo.js"></script>
 </body>
 
 <footer>
