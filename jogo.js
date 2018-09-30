@@ -1,3 +1,5 @@
+userPoints = 0;
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
   
@@ -15,7 +17,7 @@ function shuffle(array) {
     }
   
     return array;
-  }
+}
 
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
          "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
@@ -24,7 +26,27 @@ cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua
 index = [0,1,2,3,4,5,6,7,8,9];
 randomIndex = shuffle(index);
 
+clicks = 0;
+selectedCards = [];
 function revealCard(num){
-    document.getElementsByClassName("hidden-card")[num].src = cards[randomIndex[num]];  
+    clicks++;
+    document.getElementsByClassName("hidden-card")[num].src = cards[randomIndex[num]]; 
+    selectedCard = cards[randomIndex[num]];
+    selectedCards.push(selectedCard);
+    if(clicks == 2){
+        checkCards(selectedCards[0], selectedCards[1]);
+        clicks = 0;
+        selectedCards = [];
+    }
 }
+
+function checkCards(card1, card2){ //funcao que verifica se as cartas viradas sao iguais
+    if(card1 == card2){
+        userPoints ++;
+    }
+
+    window.alert(userPoints);
+}
+
+
 
