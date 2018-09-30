@@ -18,22 +18,13 @@ function shuffle(array) {
   }
 
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
+         "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
+         "images/diretas-ja.png", "images/homem-lua.png",
          "images/steve-jobs.png", "images/hitler.png"];
-cards = suffle(cards);
-auxRandom = [0,1,2,3,4,5,6,7,8,9];
-auxRandom = shuffle(auxRandom);
-function revealCard(){
-    /*for(a = 0; a < cards; a++){
-        document.getElementsByClassName("hidden-card")[1].src = "images/queda-bastilha.png"
-    }*/
-    cont = 0;
-    for(a = 0; a < cards.length; a++){
-        document.getElementsByClassName("hidden-card")[cont].src = cards[a]; 
-        cont++;
-        //document.getElementsByClassName("hidden-card")[auxRandom[a]].src = cards[a]; 
-        document.getElementsByClassName("hidden-card")[cont].src = cards[a]; 
-        cont++;
-    }
-    
+index = [0,1,2,3,4,5,6,7,8,9];
+randomIndex = shuffle(index);
 
+function revealCard(num){
+    document.getElementsByClassName("hidden-card")[num].src = cards[randomIndex[num]];  
 }
+
