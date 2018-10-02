@@ -35,7 +35,7 @@ function revealCard(num){
     auxClickedCards.push(num);
     if(clicks == 2){
     	///!!!
-        window.alert("Concluiu uma jogada"); //o bug está aqui, mas pq?
+        //window.alert("Concluiu uma jogada"); //o bug está aqui, mas pq?
         ///!!!
         if(auxClickedCards[0] != auxClickedCards[1]){
             checkCards(selectedCards[0], selectedCards[1]);
@@ -44,6 +44,9 @@ function revealCard(num){
                 document.getElementsByClassName("hidden-card")[auxClickedCards[0]].src = "";
                 document.getElementsByClassName("hidden-card")[auxClickedCards[1]].src = "";
             } else{ //volta as duas cartas para baixo
+                alert("aqui");
+                alert(clicks,auxClickedCards,selectedCards)
+                delay(5000);
                 document.getElementsByClassName("hidden-card")[auxClickedCards[0]].src = "images/hidden-card.png";
                 document.getElementsByClassName("hidden-card")[auxClickedCards[1]].src = "images/hidden-card.png";
             }
@@ -73,5 +76,38 @@ function checkCards(card1, card2){ //funcao que verifica se as cartas viradas sa
     
 }
 
+var modal = document.getElementById('simpleModal');
+var modalBtn = document.getElementById('modalBtn');
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
+
+function openModal(){
+  modal.style.display = 'block';
+}
+
+function closeModal(){
+  modal.style.display = 'none';
+}
+
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
+
+function delay(ms) {
+        var cur_d = new Date();
+        var cur_ticks = cur_d.getTime();
+        var ms_passed = 0;
+        while(ms_passed < ms) {
+            var d = new Date();  // Possible memory leak?
+            var ticks = d.getTime();
+            ms_passed = ticks - cur_ticks;
+            // d = null;  // Prevent memory leak?
+        }
+    }
 
 
