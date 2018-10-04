@@ -1,6 +1,4 @@
-userPoints = 0;
-
-function shuffle(array) {
+function shuffle(array) { //funcao de embaralhar as cartas
     var currentIndex = array.length, temporaryValue, randomIndex;
   
     while (0 !== currentIndex) {
@@ -16,64 +14,83 @@ function shuffle(array) {
     return array;
 }
 
+function Card(id, name){ //classe Card
+    this.id = id;
+    this.name = name;
+    //this.position = position;
+    this.getId = function(){
+        return this.id;
+    };
+    this.getName = function(){
+        return this.name;
+    };
+    /*this.getPosition = function(){
+        return this.position;
+    };
+    this.getInfo = function(){
+        return this.id + this.name + this.position;
+    };*/
+}
+
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
          "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
          "images/diretas-ja.png", "images/homem-lua.png",
          "images/steve-jobs.png", "images/hitler.png"];
-
-index = [0,1,2,3,4,5,6,7,8,9];
-randomIndex = shuffle(index);
-equalCards = false;
+userPoints = 0;
+cards = shuffle(cards);
+cardsObject = [];
 clicks = 0;
 selectedCards = [];
-auxClickedCards = [];
+for(a = 0; a < 10; a++){ //criando objetos card
+    var card = new Card(a, cards[a]);
+    cardsObject.push(card);
+}
+
+function findCard(id){ //encontrando a carta selecionada
+    for(card of cardsObject){
+        if(id == card.getId()){
+            return card;
+        }
+    }
+}
+
 function revealCard(num){
     clicks++;
-    document.getElementsByClassName("hidden-card")[num].src = cards[randomIndex[num]]; 
-    selectedCard = cards[randomIndex[num]];
+    selectedCard = findCard(num);
+     alert("Antes");
+    document.getElementById(num).src = selectedCard.getName();
+    alert("Depois");
+
+    //desedenvolver forma de comparar as duas cartas sem que seja por uma lista
     selectedCards.push(selectedCard);
-    auxClickedCards.push(num);
+
     if(clicks == 2){
-      ///!!!
-        //window.alert("Concluiu uma jogada"); //o bug está aqui, mas pq?
-        ///!!!
-        if(auxClickedCards[0] != auxClickedCards[1]){
-            checkCards(selectedCards[0], selectedCards[1]);
-        
-            if(equalCards == true){ //tira o par de cartas da tela se for igual
-                document.getElementsByClassName("hidden-card")[auxClickedCards[0]].src = "";
-                document.getElementsByClassName("hidden-card")[auxClickedCards[1]].src = "";
-            } else{ //volta as duas cartas para baixo
-                alert("aqui");
-                alert(clicks,auxClickedCards,selectedCards);
-                document.getElementsByClassName("hidden-card")[auxClickedCards[0]].src = "images/hidden-card.png";
-                document.getElementsByClassName("hidden-card")[auxClickedCards[1]].src = "images/hidden-card.png";
-            }
-
-            clicks = 0;
-            selectedCards = [];
-            auxClickedCards = [];
-
-        } else{
-            auxClickedCards.pop();
-            selectedCards.pop();
-            alert("Nao pode clicar na mesma carta");
-            clicks--;
-            
-        }
-    } 
-}
-
-function checkCards(card1, card2){ //funcao que verifica se as cartas viradas sao iguais
-    if(card1 == card2){
-        userPoints ++;
-        equalCards = true;
-    } else{
-        equalCards = false;
+        checkPair(selectedCards[0], selectedCards[1]);
     }
 
-    
 }
+
+function checkPair(card1, card2){
+    if(card1.getName() == card2.getName() && card1.getId() != card2.getId()){ //se a primeira carta for igual
+        clicks = 0;                                                           //a segunda e nao for a mesma carta
+        userPoints++;   
+        selectedCards = [];
+        document.getElementById(card1.getId()).src = ""; 
+        document.getElementById(card2.getId()).src = "";                                                 
+        alert("cartas iguais");
+    } else if(card1.getName() == card2.getName() && card1.getId() == card2.getId()){ //se a primeira carta for igual
+        clicks--;                                                                    //a segunda, mas for a mesma carta
+        selectedCards.pop();
+        alert("nao pode clicar na mesma carta");
+    } else{ //se as cartas forem diferentes
+        clicks = 0;                                                           
+        selectedCards = [];
+        document.getElementById(card1.getId()).src = "images/hidden-card.png"; 
+        document.getElementById(card2.getId()).src = "images/hidden-card.png";       
+        alert("cartas diferentes");
+    }
+}
+
 
 var modal = document.getElementById('simpleModal');
 var modalBtn = document.getElementById('modalBtn');
