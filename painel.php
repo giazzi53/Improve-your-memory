@@ -10,6 +10,7 @@ include('verifica_login.php');
     <meta charset="utf-8"> 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script type="text/javascript" src="js/konami_code.js"></script>
+    <script type="text/javascript" src="js/acessibilidade.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="img/logo.png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -20,8 +21,7 @@ include('verifica_login.php');
   </head>
   <body>
         <script type="text/javascript">
-                var idade = <?php echo $_SESSION['usuario'];?>;
-                  alert(idade);        
+                
         </script>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -37,11 +37,14 @@ include('verifica_login.php');
                   
                    <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
+                        
                       <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
+                      
                     </li> 
                   </ul>
                    <ul class="navbar-nav">
                     <li class="nav-item">
+                       
                       <a href="logout.php" class="nav-link">Sair</a>
                     </li> 
                   </ul>
@@ -52,6 +55,7 @@ include('verifica_login.php');
                 </div>
                       
                 <div class="jumbotron">
+                        <span class="glyphicon glyphicon-text-size" aria-hidden="true"> <img src="img/increase.png" style="max-width:20px;max-height:20px"; onclick=aumentaFonte(); style="float:right"> Aumentar fonte </span>
                         <h1>Bem-vindo ao Improve Your Game</h1>
                          
                         <p>Stress, exposição a uma grande quantidade de informações, ritmo acelerado da vida moderna e muitos outros fatores são decisivos para causar danos à saúde humana. Não só a saúde física é afetada, mas a mente também fica prejudicada. <b>Improve Your Memory</b> é um game desenvolvido visando minimizar esses efeitos citados, trazendo maior qualidade de vida através do entretenimento.</p> <p>Clique no botão abaixo e confira gratuitamente.</p> 
@@ -113,6 +117,7 @@ include('verifica_login.php');
         <script>
             var date = new Date();
             document.getElementById("ano").innerText = date.getFullYear();
+            
             
 
           </script>
