@@ -19,6 +19,10 @@ include('verifica_login.php');
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
   </head>
   <body>
+        <script type="text/javascript">
+                var idade = <?php echo $_SESSION['usuario'];?>;
+                  alert(idade);        
+        </script>
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
                 <!-- Brand -->
@@ -109,6 +113,7 @@ include('verifica_login.php');
         <script>
             var date = new Date();
             document.getElementById("ano").innerText = date.getFullYear();
+            
 
           </script>
 </body>
