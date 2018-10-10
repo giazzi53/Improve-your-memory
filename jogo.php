@@ -19,27 +19,32 @@ include('verifica_login.php');
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
-    <script src="jogo.js"></script>
+    <!-- <script src="jogo.js"></script> -->
 	<title>Improve your memory - Jogo</title>
 </head>
 
 <body>
-	<div class="cards">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(0)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(1)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(2)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(3)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(4)">
-
-		<br>
-
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(5)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(6)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(7)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(8)">
-		<img class="hidden-card" src="images/hidden-card.png" onclick="revealCard(9)">
-
+<div class="jumbotron text-center">
+		<div class="fluid-container">
+			<div class="row">
+				<img id="0" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="1" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="2" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="3" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="4" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="5" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+			</div>
+			<div class="row">
+				<img id="6" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="7" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="8" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="9" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="10" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
+				<img id="11" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">	
+			</div>
+		</div>
 	</div>
+	<h1 id='pontos'>0</h1>
 	<button id="modalBtn" class="btn btn-default btn-lg">Abre Pergunta</button>
 
 	  <div id="simpleModal" class="modal">
@@ -50,10 +55,10 @@ include('verifica_login.php');
 	      </div>
 	      <div class="modal-body">
 			<form>
-			  <input type="radio" name="gender" value="male"> Pergunta A<br>
-			  <input type="radio" name="gender" value="female"> Pergunta B<br>
-			  <input type="radio" name="gender" value="other"> Pergunta C<br>
-			  <input type="radio" name="gender" value="other"> Pergunta D
+			  <input type="radio" name="" value=""> Pergunta A<br>
+			  <input type="radio" name="" value=""> Pergunta B<br>
+			  <input type="radio" name="" value=""> Pergunta C<br>
+			  <input type="radio" name="" value=""> Pergunta D
 			</form>
 	      </div>
 	      <div class="modal-footer">
