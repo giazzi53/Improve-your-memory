@@ -28,9 +28,9 @@ function Card(id, name) { //classe Card
 }
 
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png",
+    "images/steve-jobs.png", "images/hitler.png", "images/ronaldinho-2002.png", "images/queda-bastilha.png",
     "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png"
+    "images/steve-jobs.png", "images/hitler.png","images/ronaldinho-2002.png"
 ];
 
 
@@ -102,6 +102,7 @@ $(document).ready(function () {
                     console.log('igual')
                     pontos++
                     document.getElementById('pontos').innerHTML = pontos
+                    openModal();
                  }
             }, 2000);
         console.log("antes do if final", vezes)    
@@ -110,4 +111,29 @@ $(document).ready(function () {
             vezes = 0
         }
     });
+
+
+
+    
 });
+    var modal = document.getElementById('simpleModal');
+    var modalBtn = document.getElementById('modalBtn');
+    var closeBtn = document.getElementsByClassName('closeBtn')[0];
+
+    modalBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    window.addEventListener('click', outsideClick);
+
+function openModal(){
+      modal.style.display = 'block';
+    }
+
+    function closeModal(){
+      modal.style.display = 'none';
+    }
+
+    function outsideClick(e){
+      if(e.target == modal){
+        modal.style.display = 'none';
+      }
+    }
