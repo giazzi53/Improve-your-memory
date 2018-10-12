@@ -1,139 +1,122 @@
 function shuffle(array) { //funcao de embaralhar as cartas
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
-
+    var currentIndex = array.length, temporaryValue, randomIndex;
+  
     while (0 !== currentIndex) {
-
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+  
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+  
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
-
+  
     return array;
 }
 
-function Card(id, name) { //classe Card
+function Card(id, name){ //classe Card
     this.id = id;
     this.name = name;
-    //this.position = position;
-    this.getId = function () {
+    this.getId = function(){
         return this.id;
     };
-    this.getName = function () {
+    this.getName = function(){
         return this.name;
+    };
+    this.getInfo = function(){
+        return this.id + this.name;
     };
 }
 
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png", "images/ronaldinho-2002.png", "images/queda-bastilha.png",
-    "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png","images/ronaldinho-2002.png"
-];
+         "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
+         "images/diretas-ja.png", "images/homem-lua.png",
+         "images/steve-jobs.png", "images/hitler.png"];
+userPoints = 0;
+cards = shuffle(cards);
+cardsObject = [];
+clicks = 0;
+selectedCards = [];
+auxNum = [];
+for(a = 0; a < 10; a++){ //criando objetos card
+    var card = new Card(a, cards[a]);
+    cardsObject.push(card);
+}
 
+function revealCard(num){
+    selectedCard = findCard(num);
+    document.getElementById(num).src = selectedCard.getName();
+    selectedCards.push(selectedCard);
+}
 
-function findCard(id) { //encontrando a carta selecionada
-    for (card of cardsObject) {
-        if (id == card.getId()) {
+function checkMove(num){
+    jogadaValida = true;
+    if(clicks < 2){
+        clicks++;
+        revealCard(num);
+
+        if(clicks == 2){
+            if(selectedCards[0].getName() == selectedCards[1].getName() &&
+                selectedCards[0].getId() == selectedCards[1].getId()){ //se forem cartas iguais, mas for a mesma carta
+
+                clicks--; //volta um click, jogada inválida
+                selectedCards.pop(); //retira a ultima carta selecionada, jogada inválida 
+                alert("Não pode clicar na mesma carta");   
+                jogadaValida = false; //invalida a jogada
+            }
+
+            if(jogadaValida){
+                setTimeout(checkPair, 2000)
+            }
+            
+        }
+        
+    }
+}
+
+function checkPair(){
+    if(selectedCards[0].getName() == selectedCards[1].getName() &&
+       selectedCards[0].getId() != selectedCards[1].getId()){ //se forem cartas iguais, e nao for a mesma carta
+
+        document.getElementById(selectedCards[0].getId()).src = "";  //retira a carta da tela
+        document.getElementById(selectedCards[1].getId()).src = ""; 
+        userPoints++;
+        document.getElementById("pontos").innerHTML = userPoints;
+    } else{
+        document.getElementById(selectedCards[0].getId()).src = "images/hidden-card.png"; //vira a carta para baixo
+        document.getElementById(selectedCards[1].getId()).src = "images/hidden-card.png"; 
+    }
+    
+    clicks = 0; //resetando o numero de clicks
+    selectedCards = []; //resetando a lista de cartas selecionadas
+}
+
+function findCard(id){ //encontrando a carta selecionada
+    for(card of cardsObject){
+        if(id == card.getId()){
             return card;
         }
     }
 }
 
-//objeto TURNO que vai guardar o "estado" do turno atual
-var turno = {
-    primeiro:{
-        elementoClicado : "",
-        cartaCorrespondente: ""
-    },
-    segundo:{
-        elementoClicado: "",
-        cartaCorrespondente: ""
-    },
-}
-var vezes = 0 //numero de "clicks"
-var pontos = 0 
+var modal = document.getElementById('simpleModal');
+var modalBtn = document.getElementById('modalBtn');
+var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-$(document).ready(function () {
-    cards = shuffle(cards); //embaralha os cards
-    domCardsClone = []; //cria uma lista vazia
-
-    //itera sobre cada um dos elementos que tem a classe "hidden-card" e adiciona
-    //uma copia desse elemento para a lista "domCardsClone"
-    $(".hidden-card").each(function () {
-        domCardsClone.push(this.cloneNode())
-    });
-
-    //para cada copia do node na lista, adiciona o caminho 
-    //que esta em "cards"
-    for (var i = 0; i < domCardsClone.length; i++) {
-        domCardsClone[i].src = cards[i]
-    }
-
-
-    //para cada click no elemento "hidden-card"
-    $('.hidden-card').click(function () {
-        //verifica o numero da vez
-        if (vezes == 0) {
-            vezes++ //incrementa o numero de vezes
-
-            //adiciona o elemento <img> para o atributo "elementoclicado" do
-            //objeto "primeiro" que faz parte de "turno"
-            turno.primeiro.elementoClicado = this
-            turno.primeiro.cartaCorrespondente = cards[this.id]
-            this.src = turno.primeiro.cartaCorrespondente
-
-        } else if (vezes == 1) {
-            vezes++
-            turno.segundo.elementoClicado = this
-            turno.segundo.cartaCorrespondente = cards[this.id]
-            this.src = turno.segundo.cartaCorrespondente
-
-
-            //usa a função setTimeout, que faz com que o codigo so execute
-            //apos o numero de milisegundos definido
-            setTimeout(function(){
-                 if(turno.primeiro.cartaCorrespondente != turno.segundo.cartaCorrespondente){
-                     turno.primeiro.elementoClicado.src = 'images/hidden-card.png'
-                     turno.segundo.elementoClicado.src = 'images/hidden-card.png'
-                 }else if(turno.primeiro.cartaCorrespondente == turno.segundo.cartaCorrespondente){
-                    console.log('igual')
-                    pontos++
-                    document.getElementById('pontos').innerHTML = pontos
-                    openModal();
-                 }
-            }, 2000);
-        console.log("antes do if final", vezes)    
-        }if(vezes == 2){
-            //reseta o numero de vezes ao final
-            vezes = 0
-        }
-    });
-
-
-
-    
-});
-    var modal = document.getElementById('simpleModal');
-    var modalBtn = document.getElementById('modalBtn');
-    var closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-    modalBtn.addEventListener('click', openModal);
-    closeBtn.addEventListener('click', closeModal);
-    window.addEventListener('click', outsideClick);
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+window.addEventListener('click', outsideClick);
 
 function openModal(){
-      modal.style.display = 'block';
-    }
+  modal.style.display = 'block';
+}
 
-    function closeModal(){
-      modal.style.display = 'none';
-    }
+function closeModal(){
+  modal.style.display = 'none';
+}
 
-    function outsideClick(e){
-      if(e.target == modal){
-        modal.style.display = 'none';
-      }
-    }
+function outsideClick(e){
+  if(e.target == modal){
+    modal.style.display = 'none';
+  }
+}
