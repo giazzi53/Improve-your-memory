@@ -82,6 +82,7 @@ function checkPair(){
         document.getElementById(selectedCards[1].getId()).src = ""; 
         userPoints++;
         document.getElementById("pontos").innerHTML = userPoints;
+        openModal();
     } else{
         document.getElementById(selectedCards[0].getId()).src = "images/hidden-card.png"; //vira a carta para baixo
         document.getElementById(selectedCards[1].getId()).src = "images/hidden-card.png"; 
@@ -103,7 +104,7 @@ var modal = document.getElementById('simpleModal');
 var modalBtn = document.getElementById('modalBtn');
 var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-modalBtn.addEventListener('click', openModal);
+// modalBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', outsideClick);
 
