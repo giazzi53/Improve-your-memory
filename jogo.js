@@ -28,10 +28,37 @@ function Card(id, name){ //classe Card
     };
 }
 
+/*function SelecionarNivel
+selecione um nivel: 
+    Facil
+    Medio 
+    Dificil
+    return nivel
+    
+    level = selecionarNivel()
+
+    document.getElementById("nivel").innerHTML = level;
+    */
+
 cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
-         "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
-         "images/diretas-ja.png", "images/homem-lua.png",
-         "images/steve-jobs.png", "images/hitler.png"];
+   "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
+   "images/diretas-ja.png", "images/homem-lua.png",
+   "images/steve-jobs.png", "images/hitler.png"];
+
+level = "Medio";
+if(level == "Facil"){
+    //do nothing
+} else if(level == "Medio"){
+    for(a = 0; a < 2; a++){
+        cards.push("images/torres-gemeas.jpg");
+    }
+} else{
+    for(a = 0; a < 2; a++){
+        cards.push("images/torres-gemeas.jpg");
+        cards.push("images/14bis.jpg");
+    }
+}
+
 userPoints = 0;
 cards = shuffle(cards);
 cardsObject = [];
