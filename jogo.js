@@ -28,12 +28,15 @@ function Card(id, name){ //classe Card
     };
 }
 
+document.getElementsByClassName("info")[0].style = 'display: none';  //retirando o nivel e pts da tela antes de começar o jogo
+document.getElementsByClassName("info")[1].style = 'display: none';
+
 var level;
 var el2 = document.getElementById('body');
 facil = 'facil';
 medio = 'medio';
 dificil = 'dificil';
-listHtml = ['<div id="nivelSelect">', '<h1>Selecione um nível: </h1>', 
+listHtml = ['<h1 id="levelSelect">Selecione um nível: </h1>', 
             '<button id="facil" onclick="generateCards('+facil+')">Facil</button>', 
             '<button id="medio" onclick="generateCards('+medio+')">Medio</button>',
             '<button id="dificil" onclick="generateCards('+dificil+')">Dificil</button>'];
@@ -60,9 +63,13 @@ function generateCards(dificuldade){
             content = '<img class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png" id="'+a+'" onclick="checkMove('+a+')">';
             el.insertAdjacentHTML('afterbegin', content);
         }
+        document.getElementById("levelSelect").style = 'display: none';
         document.getElementById("facil").style = 'display: none';
         document.getElementById("medio").style = 'display: none'; //tira a opção de esolher o nivel
         document.getElementById("dificil").style = 'display: none'; 
+
+        document.getElementsByClassName("info")[0].style = 'display: show';  //recolocando o nivel e pts na tela
+        document.getElementsByClassName("info")[1].style = 'display: show';  
 
         defineCards();
     }
