@@ -28,47 +28,79 @@ function Card(id, name){ //classe Card
     };
 }
 
-/*function SelecionarNivel
-selecione um nivel: 
-    Facil
-    Medio 
-    Dificil
-    return nivel
-    
-    level = selecionarNivel()
+var level;
+var el2 = document.getElementById('body');
+facil = 'facil';
+medio = 'medio';
+dificil = 'dificil';
+listHtml = ['<div id="nivelSelect">', '<h1>Selecione um nível: </h1>', 
+            '<button id="facil" onclick="generateCards('+facil+')">Facil</button>', 
+            '<button id="medio" onclick="generateCards('+medio+')">Medio</button>',
+            '<button id="dificil" onclick="generateCards('+dificil+')">Dificil</button>'];
+for(content2 of listHtml){
+    el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
+}
 
-    document.getElementById("nivel").innerHTML = level;
-    */
+jaClicou = false;
+function generateCards(dificuldade){
+    if(!jaClicou){
+        if(dificuldade == "facil"){
+            qtdeCartas = 10;
+        } else if(dificuldade == "medio"){
+            qtdeCartas = 14;
+        } else{
+            qtdeCartas = 18;
+        }
+        document.getElementById("nivel").innerHTML = dificuldade; //escreve o nivel na tela
+        level = dificuldade;
+        jaClicou = true;
+        var el = document.getElementById('body');
+        var content;
+        for(a = 0; a < qtdeCartas; a++){ //loop para criar as cartas na tela
+            content = '<img class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png" id="'+a+'" onclick="checkMove('+a+')">';
+            el.insertAdjacentHTML('afterbegin', content);
+        }
+        document.getElementById("facil").style = 'display: none';
+        document.getElementById("medio").style = 'display: none'; //tira a opção de esolher o nivel
+        document.getElementById("dificil").style = 'display: none'; 
 
-cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
-   "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
-   "images/diretas-ja.png", "images/homem-lua.png",
-   "images/steve-jobs.png", "images/hitler.png"];
-
-level = "Medio";
-if(level == "Facil"){
-    //do nothing
-} else if(level == "Medio"){
-    for(a = 0; a < 2; a++){
-        cards.push("images/torres-gemeas.jpg");
-    }
-} else{
-    for(a = 0; a < 2; a++){
-        cards.push("images/torres-gemeas.jpg");
-        cards.push("images/14bis.jpg");
+        defineCards();
     }
 }
 
-userPoints = 0;
-cards = shuffle(cards);
+function defineCards(){
+    cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
+    "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
+    "images/diretas-ja.png", "images/homem-lua.png",
+    "images/steve-jobs.png", "images/hitler.png"];
+
+    if(level == "facil"){
+        //sem ação, todas as cartas ja estao na lista
+    } else if(level == "medio"){
+        for(a = 0; a < 2; a++){
+            cards.push("images/torres-gemeas.jpg");
+            cards.push("images/14bis.jpg");
+        }
+    } else{
+        for(a = 0; a < 2; a++){
+            cards.push("images/torres-gemeas.jpg");
+            cards.push("images/14bis.jpg");
+            cards.push("images/cafu-2002.jpg");
+            cards.push("images/barack-obama.jpg");
+        }
+    }
+    cards = shuffle(cards); //embaralhando as cartas
+
+    for(a = 0; a < cards.length; a++){ //criando objetos card
+        var card = new Card(a, cards[a]);
+        cardsObject.push(card);
+    }
+}
+
 cardsObject = [];
+userPoints = 0;
 clicks = 0;
 selectedCards = [];
-auxNum = [];
-for(a = 0; a < 10; a++){ //criando objetos card
-    var card = new Card(a, cards[a]);
-    cardsObject.push(card);
-}
 
 function revealCard(num){
     selectedCard = findCard(num);
