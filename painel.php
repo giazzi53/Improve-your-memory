@@ -18,12 +18,31 @@ include('verifica_login.php');
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
-  </head>
-  <body>
-        <script type="text/javascript">
-                
+    
+     <script type="text/javascript">
+     function acessibilidade(){
+         var user_age = "<?php echo $_SESSION['idade']; ?>";
+         if(user_age > 35){
+            var elementos = document.querySelectorAll('p');
+   for(i=0; i< elementos.length; i++){
+        elementos[i].style.fontSize = "1.2em";  
+        elementos[i].style.fontWeight = "bold";  
+        elementos[i].style.color = "brown";  
+    }     
+         }  
+         
+           
+         
+     }
+            
         </script>
-        <div class="container-fluid">
+    
+    
+  </head>
+  <body onload="acessibilidade()">
+       
+       
+        
             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
                 <!-- Brand -->
                  <a class="navbar-brand" href="#"><img src="img/logo.png"></a>
@@ -39,6 +58,7 @@ include('verifica_login.php');
                     <li class="nav-item">
                         
                       <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
+                    
                       
                     </li> 
                   </ul>
@@ -55,7 +75,7 @@ include('verifica_login.php');
                 </div>
                       
                 <div class="jumbotron">
-                        <span class="glyphicon glyphicon-text-size" aria-hidden="true"> <img src="img/increase.png" style="max-width:20px;max-height:20px"; onclick=aumentaFonte(); style="float:right"> Aumentar fonte </span>
+                        
                         <h1>Bem-vindo ao Improve Your Game</h1>
                          
                         <p>Stress, exposição a uma grande quantidade de informações, ritmo acelerado da vida moderna e muitos outros fatores são decisivos para causar danos à saúde humana. Não só a saúde física é afetada, mas a mente também fica prejudicada. <b>Improve Your Memory</b> é um game desenvolvido visando minimizar esses efeitos citados, trazendo maior qualidade de vida através do entretenimento.</p> <p>Clique no botão abaixo e confira gratuitamente.</p> 

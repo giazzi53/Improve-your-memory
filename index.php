@@ -41,7 +41,7 @@ session_start();
 	                  </ul>
 	          <br>
 			  <div class="form-group">
-			    <h3 for="email" class="">Email:</h3>
+			    <h3 for="email" class="">Usuário:</h3>
                 <input name="usuario" name="text" class="form-control" placeholder="Seu usuário" autofocus="">
 			  </div>
 			  <div class="form-group">
