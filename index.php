@@ -30,10 +30,10 @@ session_start();
                 </li> 
             </ul>
         </nav>
-	<div class="jumbotron">
-        
-		<div class="row login">
-			<form action="login.php" method="POST" class="pagination-centered">
+	<div class="jumbotron" id="conteudo">
+        <div class="pagination-centered">
+                
+                    <form action="login.php" method="POST">
 	                 <ul class="navbar-nav ml-auto">
 	                    <li class="nav-item">
 	                      <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
@@ -41,24 +41,31 @@ session_start();
 	                  </ul>
 	          <br>
 			  <div class="form-group">
-			    <h3 for="email" class="">Email address:</h3>
+			    <h3 for="email" class="">Email:</h3>
                 <input name="usuario" name="text" class="form-control" placeholder="Seu usuário" autofocus="">
 			  </div>
 			  <div class="form-group">
-			    <h3 for="pwd">Password:</h3>
-                <input name="senha" class="form-control" type="password" placeholder="Sua senha">
+			    <h3 for="pwd">Senha:</h3>
+                <input name="senha" class="form-control" type="password" placeholder="Sua senha"><br>
+                 <div class="alert alert-danger" style="display:none;" id="alerta_erro">
+  <strong>Falha!</strong> Usuário ou senha incorretos    
+            </div>
+            
+        </div>
+		
 			  </div>
 			  <div class="checkbox">
-			    <label><input type="checkbox"> Remember me</label>
+			    <label><input type="checkbox"> Continuar conectado</label>
 			  </div>
               <button type="submit" class="btn btn-default">Entrar</button>
-			</form>
+			</form>   
+                
+               
+                
             <?php
                     if(isset($_SESSION['nao_autenticado'])):
                     ?>
-                    <div class="alert alert-danger">
-  <strong>Falha!</strong> Usuário ou senha incorretos
-</div>
+                    <script> document.getElementById("alerta_erro").style.display = "inline"; </script>
                     <?php
                     endif;
                     unset($_SESSION['nao_autenticado']);
