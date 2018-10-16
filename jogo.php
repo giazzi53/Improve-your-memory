@@ -24,28 +24,17 @@ include('verifica_login.php');
 </head>
 
 <body>
-<div class="jumbotron text-center">
-		<div class="fluid-container">
-			<div class="row">
-				<img id="0" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="1" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="2" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="3" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="4" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="5" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-			</div>
-			<div class="row">
-				<img id="6" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="7" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="8" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="9" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="10" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">
-				<img id="11" class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png">	
-			</div>
-		</div>
+	<div id="body"></div>
+
+	<div class="info">
+		<p>Pontuação</p>
+		<p id='pontos'>0</p>
 	</div>
-	<h1 id='pontos'>0</h1>
-	<button id="modalBtn" class="btn btn-default btn-lg">Abre Pergunta</button>
+
+	<div class="info">
+		<p>Nivel</p>
+		<p id="nivel"></p>
+	</div>
 
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">
@@ -54,18 +43,19 @@ include('verifica_login.php');
 	          <h2>Pergunta!</h2>
 	      </div>
 	      <div class="modal-body">
-			<form>
-			  <input type="radio" name="" value=""> Pergunta A<br>
-			  <input type="radio" name="" value=""> Pergunta B<br>
-			  <input type="radio" name="" value=""> Pergunta C<br>
-			  <input type="radio" name="" value=""> Pergunta D
-			</form>
+			  <form action="">
+			      <input type="radio" name="alternative" value="Alternativa_A"> Alternativa A<br>
+			      <input type="radio" name="alternative" value="Alternativa_B"> Alternativa B<br>
+			      <input type="radio" name="alternative" value="Alternativa_C"> Alternativa C<br>
+			      <input type="radio" name="alternative" value="Alternativa_D"> Alternativa D<br>
+			    </form>
 	      </div>
 	      <div class="modal-footer">
 	        <input type="button" name="" class="button" value="Confirma resposta" onclick="closeModal()">
 	      </div>
 	    </div>
 	  </div>
+
     
         <!-- Trigger the modal with a button -->
 <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
