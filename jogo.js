@@ -36,10 +36,11 @@ var el2 = document.getElementById('body');
 facil = 'facil';
 medio = 'medio';
 dificil = 'dificil';
-listHtml = ['<h1 id="levelSelect">Selecione um nível: </h1>', 
-            '<button id="facil" onclick="generateCards('+facil+')">Facil</button>', 
-            '<button id="medio" onclick="generateCards('+medio+')">Medio</button>',
-            '<button id="dificil" onclick="generateCards('+dificil+')">Dificil</button>'];
+listHtml = [
+            '<button id="facil" class="btn-info" onclick="generateCards('+facil+')">Facil</button>', 
+            '<button id="medio" class="btn-info" onclick="generateCards('+medio+')">Medio</button>',
+            '<button id="dificil" class="btn-info" onclick="generateCards('+dificil+')">Dificil</button>',
+            '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
 for(content2 of listHtml){
     el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
 }
