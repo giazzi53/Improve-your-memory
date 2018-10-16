@@ -53,7 +53,8 @@
                 <h3 for="pwd">Senha:</h3><input type="password" class="form-control" id="pwd">       
               </div>
               <div class="form-group">
-                <h3 for="email" class="">Idade:</h3><input type="text" class="form-control" id="idade">
+                <h3 for="email" class="">Data de Nascimento:</h3>
+                <input type="date" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="on" id="idade">
               </div>
               <button type="submit" class="btn btn-default">Cadastrar</button>
         </form>
