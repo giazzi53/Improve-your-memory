@@ -40,14 +40,15 @@ var el2 = document.getElementById('body');
 facil = 'facil';
 medio = 'medio';
 dificil = 'dificil';
-listHtml = [
-            '<button id="facil" class="btn-info" onclick="generateCards('+facil+')">Facil</button>', 
-            '<button id="medio" class="btn-info" onclick="generateCards('+medio+')">Medio</button>',
-            '<button id="dificil" class="btn-info" onclick="generateCards('+dificil+')">Dificil</button>',
+listHtml = ['</div>',
+            '<button id="facil" class="btn btn-primary" onclick="generateCards('+facil+')">Facil</button>', 
+            '<button id="medio" class="btn btn-primary" onclick="generateCards('+medio+')">Medio</button>',
+            '<button id="dificil" class="btn btn-primary" onclick="generateCards('+dificil+')">Dificil</button>',
+            '<div id="botoes">',
             '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
-for(content2 of listHtml){
-    el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
-}
+// for(content2 of listHtml){
+//     el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
+// }
 
 jaClicou = false;
 function generateCards(dificuldade){
@@ -77,6 +78,7 @@ function generateCards(dificuldade){
         document.getElementById("facil").style = 'display: none';
         document.getElementById("medio").style = 'display: none'; //tira a opção de esolher o nivel
         document.getElementById("dificil").style = 'display: none'; 
+        document.getElementById("divLevel").style = 'display: none'; 
 
         document.getElementsByClassName("info")[0].style = 'display: show';  //recolocando o nivel e pts na tela
         document.getElementsByClassName("info")[1].style = 'display: show';  

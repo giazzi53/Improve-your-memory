@@ -24,18 +24,27 @@ include('verifica_login.php');
 </head>
 
 <body>
-	<div id="body"></div>
+<body class="">
+		<nav id="navBar" class="navbar navbar-expand-md bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
+                </li> 
+            </ul>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-	<div class="info">
-		<p>Pontuação</p>
-		<p id='pontos'>0</p>
-	</div>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="painel.php" class="nav-link">Home</a>
+                    </li> 
+                </ul>
+            </div> 
+        </nav>
 
-	<div class="info">
-		<p>Nivel</p>
-		<p id="nivel"></p>
-	</div>
-
+		<div id="body"></div>
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -55,10 +64,30 @@ include('verifica_login.php');
 	      </div>
 	    </div>
 	  </div>
+ 		
+ 		<div id="divLevel" class="jumbotron text-center Pagination-centered"> 
+ 			<h1 id="levelSelect" >Selecione um nível: </h1>
+ 			<br><br>
+			<div id="botoes row Pagination-centered">	
+	            <button id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('facil')">Facil</button> 
+	            <button id="medio" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('medio')">Medio</button>
+	            <button id="dificil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('dificil')">Dificil</button>
+            </div>
+ 			
+ 		</div>
+	  <div id="BtnInstrucoes" class="jumbotron">
+	  		<div class="info">
+				<h1>Pontuação</h1>
+				<h1 id='pontos'>0</h1>
+			</div>
 
-    
-        <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+			<div class="info">
+				<h1>Nivel</h1>
+				<h1 id="nivel"></h1>
+			</div>
+
+	  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+	  </div>
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
