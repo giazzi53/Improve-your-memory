@@ -27,6 +27,9 @@ function Card(id, name, question){ //classe Card
     this.getQuestion = function(){
         return this.question;
     };
+    this.setQuestion = function(question){
+        this.question = question;
+    };
     this.getInfo = function(){
         return this.id + " " + this.name + " " + this.question;
     };
@@ -120,8 +123,9 @@ function defineCards(){
     for(a = 0; a < cards.length; a++){ //criando objetos card
         var card = new Card(a, cards[a], perguntas[a]);
         cardsObject.push(card);
+        
     }
-
+    generateQuestions(cardsObject[0]);
     //cardsObject = shuffle(cardsObject); //embaralhando as cartas
 }
 
@@ -129,6 +133,15 @@ cardsObject = [];
 userPoints = 0;
 clicks = 0;
 selectedCards = [];
+
+listQuestions = ["Queda da bastilha, que aconteceu na França na época que o povo se revoltou contra a monarquia"];
+
+function generateQuestions(card){
+    for(option of listQuestions){
+        card.setQuestion(option);
+    }
+    
+}
 
 function revealCard(num){
     selectedCard = findCard(num);
@@ -196,7 +209,12 @@ closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', outsideClick);
 
 function openModal(){
+  showQuestion();
   modal.style.display = 'block';
+}
+
+function showQuestion(){
+    document.getElementById('alternativaA').textContent = selectedCards[0].getQuestion();
 }
 
 function closeModal(){
