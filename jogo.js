@@ -14,17 +14,21 @@ function shuffle(array) { //funcao de embaralhar as cartas
     return array;
 }
 
-function Card(id, name){ //classe Card
+function Card(id, name, question){ //classe Card
     this.id = id;
     this.name = name;
+    this.question = question;
     this.getId = function(){
         return this.id;
     };
     this.getName = function(){
         return this.name;
     };
+    this.getQuestion = function(){
+        return this.question;
+    };
     this.getInfo = function(){
-        return this.id + this.name;
+        return this.id + " " + this.name + " " + this.question;
     };
 }
 
@@ -60,8 +64,13 @@ function generateCards(dificuldade){
         jaClicou = true;
         var el = document.getElementById('body');
         var content;
+        auxRandom = [];
+        for(a = 0; a < qtdeCartas; a++){ 
+            auxRandom.push(a);
+        }
+        auxRandom = shuffle(auxRandom); //embaralhando as cartas
         for(a = 0; a < qtdeCartas; a++){ //loop para criar as cartas na tela
-            content = '<img class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png" id="'+a+'" onclick="checkMove('+a+')">';
+            content = '<img class="hidden-card col-md-2 col-sm-4" src="images/hidden-card.png" id="'+auxRandom[a]+'" onclick="checkMove('+auxRandom[a]+')">';
             el.insertAdjacentHTML('afterbegin', content);
         }
         document.getElementById("levelSelect").style = 'display: none';
@@ -77,32 +86,43 @@ function generateCards(dificuldade){
 }
 
 function defineCards(){
-    cards = ["images/queda-bastilha.png", "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png", "images/queda-bastilha.png", 
-    "images/diretas-ja.png", "images/homem-lua.png",
-    "images/steve-jobs.png", "images/hitler.png"];
+    cards = ["images/queda-bastilha.png", "images/queda-bastilha.png",
+    "images/diretas-ja.png", "images/diretas-ja.png",
+    "images/homem-lua.png", "images/homem-lua.png",
+    "images/steve-jobs.png", "images/steve-jobs.png",
+     "images/hitler.png", "images/hitler.png"];
 
+     perguntas = ["Pergunta sobre queda bastilha", "Pergunta sobre queda bastilha",
+     "Pergunta sobre diretas ja", "Pergunta sobre diretas ja",
+     "Pergunta sobre homem lua", "Pergunta sobre homem lua",
+     "Pergunta sobre steve jobs", "Pergunta sobre steve jobs",
+     "Pergunta sobre hitler", "Pergunta sobre hitler"];
+    
     if(level == "facil"){
         //sem ação, todas as cartas ja estao na lista
-    } else if(level == "medio"){
-        for(a = 0; a < 2; a++){
-            cards.push("images/torres-gemeas.jpg");
-            cards.push("images/14bis.jpg");
-        }
+    } else if(level == "medio"){ 
+        cards.push("images/torres-gemeas.jpg");
+        cards.push("images/torres-gemeas.jpg");
+        cards.push("images/14bis.jpg");
+        cards.push("images/14bis.jpg");
     } else{
-        for(a = 0; a < 2; a++){
-            cards.push("images/torres-gemeas.jpg");
-            cards.push("images/14bis.jpg");
-            cards.push("images/cafu-2002.jpg");
-            cards.push("images/barack-obama.jpg");
-        }
+        cards.push("images/torres-gemeas.jpg");
+        cards.push("images/torres-gemeas.jpg");
+        cards.push("images/14bis.jpg");
+        cards.push("images/14bis.jpg");
+        cards.push("images/cafu-2002.jpg");
+        cards.push("images/cafu-2002.jpg");
+        cards.push("images/barack-obama.jpg");
+        cards.push("images/barack-obama.jpg");
     }
-    cards = shuffle(cards); //embaralhando as cartas
+    //cards = shuffle(cards); //embaralhando as cartas
 
     for(a = 0; a < cards.length; a++){ //criando objetos card
-        var card = new Card(a, cards[a]);
+        var card = new Card(a, cards[a], perguntas[a]);
         cardsObject.push(card);
     }
+
+    //cardsObject = shuffle(cardsObject); //embaralhando as cartas
 }
 
 cardsObject = [];
