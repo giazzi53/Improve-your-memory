@@ -35,10 +35,10 @@
             </div> 
         </nav>
 
-    <div class="jumbotron" >
-        <div class="row login">
+    <div class="jumbotron" id="conteudo">
+       
             <div class="pagination-centered">
-            <form action="/action_page.php">
+            <form action="cad_user.php"  method="POST">
             <a class="navbar-brand" href="#"><img src="img/logo.png"></a>
                      <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
@@ -47,19 +47,21 @@
                       </ul>
               <br>
               <div class="form-group">
-                <h3 for="login" class="">Usuario:</h3><input type="text" class="form-control" id="login">
+                <h3 for="email" class="">Email:</h3><input name="usuario_cad" type="email" class="form-control" placeholder="Seu usuário" autofocus="">
               </div>
               <div class="form-group">
-                <h3 for="pwd">Senha:</h3><input type="password" class="form-control" id="pwd">       
+                <h3 for="pwd">Senha:</h3>
+                <input name="senha_cad" class="form-control" type="password" placeholder="Sua senha">      
               </div>
               <div class="form-group">
-                <h3 for="email" class="">Data de Nascimento:</h3>
-                <input type="date" class="form-control" placeholder="Ex.: dd/mm/aaaa" data-mask="00/00/0000" maxlength="10" autocomplete="on" id="idade">
+                <h3 for="nascimento" class="">Idade(anos):</h3>
+                <input name="nascimento_cad" class="form-control" type="number" placeholder="Sua idade">
+                
               </div>
               <button type="submit" class="btn btn-default">Cadastrar</button>
         </form>
         </div>
-    </div>  
+    
     </div>
     </body>
 </html>

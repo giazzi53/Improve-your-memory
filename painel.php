@@ -76,7 +76,7 @@ include('verifica_login.php');
                       
                 <div class="jumbotron">
                         
-                        <h1>Bem-vindo ao Improve Your Game</h1>
+                        <h1>Bem-vindo ao Improve Your Memory</h1>
                          
                         <p>Stress, exposição a uma grande quantidade de informações, ritmo acelerado da vida moderna e muitos outros fatores são decisivos para causar danos à saúde humana. Não só a saúde física é afetada, mas a mente também fica prejudicada. <b>Improve Your Memory</b> é um game desenvolvido visando minimizar esses efeitos citados, trazendo maior qualidade de vida através do entretenimento.</p> <p>Clique no botão abaixo e confira gratuitamente.</p> 
                         
