@@ -25,7 +25,7 @@ include('verifica_login.php');
 
 <body>
 <body class="">
-		<nav id="navBar" class="navbar navbar-expand-md bg-dark navbar-dark">
+				<nav id="navBar" class="navbar navbar-expand-md bg-dark navbar-dark">
             <!-- Brand -->
             <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
             <ul class="navbar-nav ml-auto">
@@ -53,8 +53,8 @@ include('verifica_login.php');
 	      </div>
 	      <div class="modal-body">
 			  <form action="">
-			      <input type="radio" name="alternative" value="Alternativa_A"> Alternativa A<br>
-			      <input type="radio" name="alternative" value="Alternativa_B"> Alternativa B<br>
+			      <input type="radio" name="alternative" value="Alternativa_A"><span id="alternativaA"> Alternativa A</span><br>
+			      <input type="radio" name="alternative"> Alternativa B<br>
 			      <input type="radio" name="alternative" value="Alternativa_C"> Alternativa C<br>
 			      <input type="radio" name="alternative" value="Alternativa_D"> Alternativa D<br>
 			    </form>
@@ -88,7 +88,6 @@ include('verifica_login.php');
 
 	  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
 	  </div>
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
