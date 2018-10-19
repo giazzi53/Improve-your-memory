@@ -160,7 +160,28 @@ listQuestions =[[" Queda da bastilha, que aconteceu na França quando o povo se 
                 [" Preparação de ataque a Hiroshima e Nagasaki, ordenado pelo então presidente Amerciano Harry S. Truman",
                  " Desfile militar nas ruas de Pyongyang, capital da Coréia do Norte, sendo comandado pelo seu primeiro ditador Kim Il-Sung",
                  " Adolf Hitler, lider Nazista responsável pela morte de milhares de judeus e negros, por defender a \"raça superior\" e tentar levantar a Alemanha pós Segunda Guerra",
-                 " Nenhuma das opções acima"]];
+                 " Nenhuma das opções acima"],
+                
+                [" Atentando as Torres Gêmeas do World Trade Center, nos EUA, em 11 de setembro de 2001, comandado pelo grupo terrorista Al Qaeda",
+                 " Acidente aéreo da Malaysia Airlines em um prédio comercial, o qual deixou centenas de mortos e feridos",
+                 " Incêndio no prédio Wilton Paes de Almeida, em São Paulo, causado por curto circuito em uma tomada, levando a construção abaixo",
+                 " Nenhuma das opções acima"],
+
+                [" Primeira câmera fotográfica, criada por Joseph Nicéphore Niépce em 1826, na França",
+                 " Criação do primeiro avião, chamado de 14 Bis, pelo inventor brasileiro Santos Dumont, em 1906",
+                 " Primeiro carro já criado em 1886, por Karl Benz",
+                 " Nenhuma das opções acima"],
+                
+                [" Conquista do Pentacampeonato da seleção brasileira em 2002, após vencer a Alemanha por 2 a 0", 
+                 " Ayrton Senna, um grande ícone do automobilismo, comemorando uma de suas conquistas na Fórmula 1",
+                 " Conquista do Tetracampeonato do Brasil em 1994, após bater a Itália nos pênaltis",
+                 " Nenhuma das opções acima"],
+
+                [" Martin Luther King, imagem que lutou a favor dos direitos civis americanos, de 1954 até sua morte em 1968", 
+                 " Nelson Mandela, líder sul-africano de movimentos sociais contra o Apartheid",
+                 " Barack Obama, o primeiro presidente negro a ser eleito nos Estados Unidos",
+                 " Nenhuma das opções acima"]
+            ];
 
 function generateQuestions(card, idx){ //adiciona as opções para cada carta
     for(a = 0; a < 4; a++){
