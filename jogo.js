@@ -14,21 +14,21 @@ function shuffle(array) { //funcao de embaralhar as cartas
     return array;
 }
 
-function Card(id, name, question){ //classe Card
+function Card(id, name){ //classe Card
     this.id = id;
     this.name = name;
-    this.question = question;
+    this.questions = [];
     this.getId = function(){
         return this.id;
     };
     this.getName = function(){
         return this.name;
     };
-    this.getQuestion = function(){
-        return this.question;
+    this.getQuestion = function(idx){
+        return this.questions[idx];
     };
     this.setQuestion = function(question){
-        this.question = question;
+        this.questions.push(question);
     };
     this.getInfo = function(){
         return this.id + " " + this.name + " " + this.question;
@@ -97,12 +97,6 @@ function defineCards(){
     "images/steve-jobs.png", "images/steve-jobs.png",
      "images/hitler.png", "images/hitler.png"];
 
-     perguntas = ["Pergunta sobre queda bastilha", "Pergunta sobre queda bastilha",
-     "Pergunta sobre diretas ja", "Pergunta sobre diretas ja",
-     "Pergunta sobre homem lua", "Pergunta sobre homem lua",
-     "Pergunta sobre steve jobs", "Pergunta sobre steve jobs",
-     "Pergunta sobre hitler", "Pergunta sobre hitler"];
-    
     if(level == "facil"){
         //sem ação, todas as cartas ja estao na lista
     } else if(level == "medio"){ 
@@ -120,15 +114,22 @@ function defineCards(){
         cards.push("images/barack-obama.jpg");
         cards.push("images/barack-obama.jpg");
     }
-    //cards = shuffle(cards); //embaralhando as cartas
 
     for(a = 0; a < cards.length; a++){ //criando objetos card
-        var card = new Card(a, cards[a], perguntas[a]);
+        var card = new Card(a, cards[a]);
         cardsObject.push(card);
-        
     }
-    generateQuestions(cardsObject[0]);
-    //cardsObject = shuffle(cardsObject); //embaralhando as cartas
+
+    aux = 0;
+    questionIdx = 0;
+    for(card of cardsObject){ //gerando perguntas para cada carta
+        aux++;
+        generateQuestions(card, questionIdx); 
+        if(aux == 2){
+            aux = 0;
+            questionIdx++; //o índice das perguntas deve ser adicionado a cada par, assim o par de cartas terá a mesma pergunta
+        }
+    }
 }
 
 cardsObject = [];
@@ -136,19 +137,41 @@ userPoints = 0;
 clicks = 0;
 selectedCards = [];
 
-listQuestions = ["Queda da bastilha, que aconteceu na França na época que o povo se revoltou contra a monarquia"];
+listQuestions =[[" Queda da bastilha, que aconteceu na França quando o povo se revoltou contra a monarquia", 
+                 " Queda do muro de Berlim, que ocorreu na Alemanha após o fim da divisão entre Oriente e Ocidente no país",
+                 " Ataque às Torres Gêmeas, que ocorreu nos EUA após o atentado praticado em 11 de Setembro de 2001",
+                 " Nenhuma das opções acima"], 
+                 
+                [" Protesto pedindo o impeachment da presidente Dilma Roussef, em 2015",
+                 " Protesto pedindo eleições diretas, na qual a população escolheria seu governante, no fim da ditadura militar",
+                 " Movimento em prol dos trabalhadores sem teto, pedindo uma mudança imediatamente",
+                 " Nenhuma das opções acima"], 
+                
+                [" Primeiro homem ao chegar ao topo do monte Everest, deixando sua marca com a bandeira dos EUA",
+                 " Um homem confeccionando a primeira bandeira nacional de todas",
+                 " Chegada do homem à lua, no qual Neil Armstrong fixou a bandeira Americana em solo desconhecido",
+                 " Nenhuma das opções acima"],
 
-function generateQuestions(card){
-    for(option of listQuestions){
-        card.setQuestion(option);
+                [" Steve Jobs apresentando o primeiro Iphone, em 2007, que viraria mais adiante o celular mais desejado por todos",
+                 " Bill gates em uma palestra sobre seu novo produto, o Windows, que seria anos depois o sistema operacional mais usado no mundo",
+                 " Larry Page, um dos fundadores do Google, mostrando como seu sistema de busca na web funcionava",
+                 " Nenhuma das opções acima"],
+
+                [" Preparação de ataque a Hiroshima e Nagasaki, ordenado pelo então presidente Amerciano Harry S. Truman",
+                 " Desfile militar nas ruas de Pyongyang, capital da Coréia do Norte, sendo comandado pelo seu primeiro ditador Kim Il-Sung",
+                 " Adolf Hitler, lider Nazista responsável pela morte de milhares de judeus e negros, por defender a \"raça superior\" e tentar levantar a Alemanha pós Segunda Guerra",
+                 " Nenhuma das opções acima"]];
+
+function generateQuestions(card, idx){ //adiciona as opções para cada carta
+    for(a = 0; a < 4; a++){
+        card.setQuestion(listQuestions[idx][a]);
     }
-    
 }
 
-function revealCard(num){
+function revealCard(num){ //vira a carta
     selectedCard = findCard(num);
-    document.getElementById(num).src = selectedCard.getName();
-    selectedCards.push(selectedCard);
+    document.getElementById(num).src = selectedCard.getName(); //substitui o nome da carta
+    selectedCards.push(selectedCard); //adiciona a carta selecionada na lista de cartas selecionadas
 }
 
 function checkMove(num){
@@ -167,12 +190,10 @@ function checkMove(num){
                 jogadaValida = false; //invalida a jogada
             }
 
-            if(jogadaValida){
+            if(jogadaValida){ //dando um intervalo para tomar alguma ação nas cartas
                 setTimeout(checkPair, 2000)
             }
-            
-        }
-        
+        }  
     }
 }
 
@@ -206,7 +227,6 @@ var modal = document.getElementById('simpleModal');
 var modalBtn = document.getElementById('modalBtn');
 var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-// modalBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', outsideClick);
 
@@ -215,8 +235,12 @@ function openModal(){
   modal.style.display = 'block';
 }
 
+alternativas = ["alternativaA", "alternativaB", "alternativaC", "alternativaD"];
+
 function showQuestion(){
-    document.getElementById('alternativaA').textContent = selectedCards[0].getQuestion();
+    for(a = 0; a < 4; a++){ //como as cartas são iguais, não faz diferença qual será escolhida para mostrar as perguntas
+        document.getElementById(alternativas[a]).textContent = selectedCards[0].getQuestion(a);
+    }
 }
 
 function closeModal(){
