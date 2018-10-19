@@ -41,8 +41,8 @@ session_start();
 	                  </ul>
 	          <br>
 			  <div class="form-group">
-			    <h3 for="email" class="">Usuário:</h3>
-                <input name="usuario" name="text" class="form-control" placeholder="Seu usuário" autofocus="">
+			    <h3 for="email" class="">Email:</h3>
+                <input name="usuario" type="email" class="form-control" placeholder="Seu email" autofocus="">
 			  </div>
 			  <div class="form-group">
 			    <h3 for="pwd">Senha:</h3>
@@ -57,7 +57,8 @@ session_start();
 			  <div class="checkbox">
 			    <label><input type="checkbox"> Continuar conectado</label>
 			  </div>
-              <button type="submit" class="btn btn-default">Entrar</button>
+              <button type="submit" class="btn btn-default" style="margin-bottom:1.1em;">Entrar</button><br>
+              <button class="btn btn-default"><a href="cadastro.php" style="color:black;text-decoration:none">Cadastrar-se</a></button>
 			</form>   
                 
                
