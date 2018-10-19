@@ -21,7 +21,7 @@ session_start();
 <body>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
             <!-- Brand -->
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
+            <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
             
             <!-- Navbar links -->
             <ul class="navbar-nav ml-auto">

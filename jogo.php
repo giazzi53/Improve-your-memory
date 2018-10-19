@@ -4,6 +4,7 @@ include('verifica_login.php');
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,24 +19,33 @@ include('verifica_login.php');
 </head>
 
 <body class="">
-		<nav id="navBar" class="navbar navbar-expand-md bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
-                </li> 
-            </ul>
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-
-                <ul class="navbar-nav ml-auto">
+		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <!-- Brand -->
+                 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
+                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="index.html" class="nav-link">Home</a>
+                      <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
                     </li> 
-                </ul>
-            </div> 
-        </nav>
+                  </ul>
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  
+                   <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        
+                      <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
+                    
+                      
+                    </li> 
+                  </ul>
+                   <ul class="navbar-nav">
+                    <li class="nav-item">
+                       
+                      <a href="end_session.php" class="nav-link">Sair</a>
+                    </li> 
+                  </ul>
+                </div> 
+              </nav>
 
 		<div id="body"></div>
 	  <div id="simpleModal" class="modal">

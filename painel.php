@@ -22,7 +22,7 @@ include('verifica_login.php');
      <script type="text/javascript">
      function acessibilidade(){
          var user_age = "<?php echo $_SESSION['idade']; ?>";
-         if(user_age > 35){
+         if(user_age > 50){
             var elementos = document.querySelectorAll('p');
    for(i=0; i< elementos.length; i++){
         elementos[i].style.fontSize = "1.2em";  
@@ -45,7 +45,7 @@ include('verifica_login.php');
         
             <nav class="navbar navbar-expand-md bg-dark navbar-dark">
                 <!-- Brand -->
-                 <a class="navbar-brand" href="#"><img src="img/logo.png"></a>
+                 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
                  <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                       <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
@@ -65,7 +65,7 @@ include('verifica_login.php');
                    <ul class="navbar-nav">
                     <li class="nav-item">
                        
-                      <a href="logout.php" class="nav-link">Sair</a>
+                      <a href="end_session.php" class="nav-link">Sair</a>
                     </li> 
                   </ul>
                 </div> 
