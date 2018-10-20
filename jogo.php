@@ -75,9 +75,9 @@ include('verifica_login.php');
  			<h1 id="levelSelect" >Selecione um nível: </h1>
  			<br><br>
 			<div id="botoes row Pagination-centered">	
-	            <button id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('facil')">Facil</button> 
-	            <button id="medio" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('medio')">Medio</button>
-	            <button id="dificil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('dificil')">Dificil</button>
+	            <button id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Fácil')">Fácil</button> 
+	            <button id="medio" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Médio')">Médio</button>
+	            <button id="dificil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Difícil')">Difícil</button>
             </div>
  			
  		</div>
@@ -88,7 +88,7 @@ include('verifica_login.php');
 			</div>
 
 			<div class="info">
-				<h1>Nivel</h1>
+				<h1>Nível</h1>
 				<h1 id="nivel"></h1>
 			</div>
 
