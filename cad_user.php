@@ -15,7 +15,10 @@ $user =  $_POST['usuario_cad'];
 $passw = $_POST['senha_cad'];
 $age = $_POST['nascimento_cad'];
 
+
+
 $sql = "INSERT INTO usuario (usuario, senha, idade) VALUES ('$user', '$passw', $age)";
+
 
 // the message
 $msg = "Obrigado por se cadastrar em Improve Your Memory. Sua senha para acesso a esta conta é: $passw e você pode redefini-la a qualquer momento";
@@ -27,7 +30,10 @@ $msg = wordwrap($msg,70);
 mail($user,"Testando envio de emails",$msg);
 
 if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+	header('Location: index.php');
+	exit();
+
+   
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

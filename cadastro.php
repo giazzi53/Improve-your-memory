@@ -47,7 +47,7 @@
                       </ul>
               <br>
               <div class="form-group">
-                <h3 for="email" class="">Email:</h3><input name="usuario_cad" type="email" class="form-control" placeholder="Seu usuário" autofocus="">
+                <h3 for="email" class="">Email:</h3><input name="usuario_cad" type="email" class="form-control" placeholder="Seu email" autofocus="">
               </div>
               <div class="form-group">
                 <h3 for="pwd">Senha:</h3>
@@ -55,10 +55,11 @@
               </div>
               <div class="form-group">
                 <h3 for="nascimento" class="">Idade(anos):</h3>
-                <input name="nascimento_cad" class="form-control" type="number" placeholder="Sua idade">
+                <input name="nascimento_cad" class="form-control" type="number" min="1" max="200" placeholder="Sua idade">
                 
               </div>
-              <button type="submit" class="btn btn-default">Cadastrar</button>
+              <button type="submit" class="btn btn-default">Cadastrar</button><br>
+              <p style="text-align:center"> Já tem uma conta? <a href="index.php"> Clique aqui </a> para acessa-la</p>
         </form>
         </div>
     

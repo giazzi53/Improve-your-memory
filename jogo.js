@@ -14,24 +14,31 @@ function shuffle(array) { //funcao de embaralhar as cartas
     return array;
 }
 
-function Card(id, name, question){ //classe Card
+function Card(id, name){ //classe Card
     this.id = id;
     this.name = name;
-    this.question = question;
+    this.questions = [];
+    this.answer = "";
     this.getId = function(){
         return this.id;
     };
     this.getName = function(){
         return this.name;
     };
-    this.getQuestion = function(){
-        return this.question;
+    this.getQuestion = function(idx){
+        return this.questions[idx];
     };
     this.setQuestion = function(question){
-        this.question = question;
+        this.questions.push(question);
+    };
+    this.getAnswer = function(){
+        return this.answer;
+    };
+    this.setAnswer = function(resp){
+        this.answer = resp;
     };
     this.getInfo = function(){
-        return this.id + " " + this.name + " " + this.question;
+        return this.id + " " + this.name + " " + this.question + " " + this.answer;
     };
 }
 
@@ -49,9 +56,7 @@ listHtml = ['</div>',
             '<button id="dificil" class="btn btn-primary" onclick="generateCards('+dificil+')">Dificil</button>',
             '<div id="botoes">',
             '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
-// for(content2 of listHtml){
-//     el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
-// }
+
 
 jaClicou = false;
 function generateCards(dificuldade){
@@ -97,12 +102,6 @@ function defineCards(){
     "images/steve-jobs.png", "images/steve-jobs.png",
      "images/hitler.png", "images/hitler.png"];
 
-     perguntas = ["Pergunta sobre queda bastilha", "Pergunta sobre queda bastilha",
-     "Pergunta sobre diretas ja", "Pergunta sobre diretas ja",
-     "Pergunta sobre homem lua", "Pergunta sobre homem lua",
-     "Pergunta sobre steve jobs", "Pergunta sobre steve jobs",
-     "Pergunta sobre hitler", "Pergunta sobre hitler"];
-    
     if(level == "facil"){
         //sem ação, todas as cartas ja estao na lista
     } else if(level == "medio"){ 
@@ -120,15 +119,23 @@ function defineCards(){
         cards.push("images/barack-obama.jpg");
         cards.push("images/barack-obama.jpg");
     }
-    //cards = shuffle(cards); //embaralhando as cartas
 
     for(a = 0; a < cards.length; a++){ //criando objetos card
-        var card = new Card(a, cards[a], perguntas[a]);
+        var card = new Card(a, cards[a]);
         cardsObject.push(card);
-        
     }
-    generateQuestions(cardsObject[0]);
-    //cardsObject = shuffle(cardsObject); //embaralhando as cartas
+
+    aux = 0;
+    questionIdx = 0;
+    for(card of cardsObject){ //gerando perguntas e respostas para cada carta
+        aux++;
+        generateQuestion(card, questionIdx); 
+        generateAnswer(card, questionIdx);
+        if(aux == 2){
+            aux = 0;
+            questionIdx++; //o índice das perguntas deve ser adicionado a cada par, assim o par de cartas terá a mesma pergunta
+        }
+    }
 }
 
 cardsObject = [];
@@ -136,19 +143,68 @@ userPoints = 0;
 clicks = 0;
 selectedCards = [];
 
-listQuestions = ["Queda da bastilha, que aconteceu na França na época que o povo se revoltou contra a monarquia"];
+listQuestions =[[" Queda da bastilha, que aconteceu na França quando o povo se revoltou contra a monarquia", 
+                 " Queda do muro de Berlim, que ocorreu na Alemanha após o fim da divisão entre Oriente e Ocidente no país",
+                 " Ataque às Torres Gêmeas, que ocorreu nos EUA após o atentado praticado em 11 de Setembro de 2001",
+                 " Nenhuma das opções acima"], 
+                 
+                [" Protesto pedindo o impeachment da presidente Dilma Roussef, em 2015",
+                 " Protesto pedindo eleições diretas, na qual a população escolheria seu governante, no fim da ditadura militar",
+                 " Movimento em prol dos trabalhadores sem teto, pedindo uma mudança imediatamente",
+                 " Nenhuma das opções acima"], 
+                
+                [" Primeiro homem ao chegar ao topo do monte Everest, deixando sua marca com a bandeira dos EUA",
+                 " Um homem confeccionando a primeira bandeira nacional de todas",
+                 " Chegada do homem à lua, no qual Neil Armstrong fixou a bandeira Americana em solo desconhecido",
+                 " Nenhuma das opções acima"],
 
-function generateQuestions(card){
-    for(option of listQuestions){
-        card.setQuestion(option);
+                [" Steve Jobs apresentando o primeiro Iphone, em 2007, que viraria mais adiante o celular mais desejado por todos",
+                 " Bill gates em uma palestra sobre seu novo produto, o Windows, que seria anos depois o sistema operacional mais usado no mundo",
+                 " Larry Page, um dos fundadores do Google, mostrando como seu sistema de busca na web funcionava",
+                 " Nenhuma das opções acima"],
+
+                [" Preparação de ataque a Hiroshima e Nagasaki, ordenado pelo então presidente Amerciano Harry S. Truman",
+                 " Desfile militar nas ruas de Pyongyang, capital da Coréia do Norte, sendo comandado pelo seu primeiro ditador Kim Il-Sung",
+                 " Adolf Hitler, lider Nazista responsável pela morte de milhares de judeus e negros, por defender a \"raça superior\" e tentar levantar a Alemanha pós Segunda Guerra",
+                 " Nenhuma das opções acima"],
+                
+                [" Atentando as Torres Gêmeas do World Trade Center, nos EUA, em 11 de setembro de 2001, comandado pelo grupo terrorista Al Qaeda",
+                 " Acidente aéreo da Malaysia Airlines em um prédio comercial, o qual deixou centenas de mortos e feridos",
+                 " Incêndio no prédio Wilton Paes de Almeida, em São Paulo, causado por curto circuito em uma tomada, levando a construção abaixo",
+                 " Nenhuma das opções acima"],
+
+                [" Primeira câmera fotográfica, criada por Joseph Nicéphore Niépce em 1826, na França",
+                 " Criação do primeiro avião, chamado de 14 Bis, pelo inventor brasileiro Santos Dumont, em 1906",
+                 " Primeiro carro já criado em 1886, por Karl Benz",
+                 " Nenhuma das opções acima"],
+                
+                [" Conquista do Pentacampeonato da seleção brasileira em 2002, após vencer a Alemanha por 2 a 0", 
+                 " Ayrton Senna, um grande ícone do automobilismo, comemorando uma de suas conquistas na Fórmula 1",
+                 " Conquista do Tetracampeonato do Brasil em 1994, após bater a Itália nos pênaltis",
+                 " Nenhuma das opções acima"],
+
+                [" Martin Luther King, imagem que lutou a favor dos direitos civis americanos, de 1954 até sua morte em 1968", 
+                 " Nelson Mandela, líder sul-africano de movimentos sociais contra o Apartheid",
+                 " Barack Obama, o primeiro presidente negro a ser eleito nos Estados Unidos",
+                 " Nenhuma das opções acima"]
+            ];
+
+
+function generateQuestion(card, idx){ //adiciona as opções para cada carta
+    for(a = 0; a < 4; a++){
+        card.setQuestion(listQuestions[idx][a]);
     }
-    
 }
 
-function revealCard(num){
+answers = ["A", "B", "C", "A", "C", "A", "B", "A", "C"];
+function generateAnswer(card, idx){ //definindo as respostas de cada carta
+    card.setAnswer(answers[idx]);
+}
+
+function revealCard(num){ //vira a carta
     selectedCard = findCard(num);
-    document.getElementById(num).src = selectedCard.getName();
-    selectedCards.push(selectedCard);
+    document.getElementById(num).src = selectedCard.getName(); //substitui o nome da carta, ou seja, vira pra cima
+    selectedCards.push(selectedCard); //adiciona a carta selecionada na lista de cartas selecionadas
 }
 
 function checkMove(num){
@@ -167,12 +223,10 @@ function checkMove(num){
                 jogadaValida = false; //invalida a jogada
             }
 
-            if(jogadaValida){
+            if(jogadaValida){ //dando um intervalo para tomar alguma ação nas cartas
                 setTimeout(checkPair, 2000)
             }
-            
-        }
-        
+        }  
     }
 }
 
@@ -183,7 +237,6 @@ function checkPair(){
         document.getElementById(selectedCards[0].getId()).src = "";  //retira a carta da tela
         document.getElementById(selectedCards[1].getId()).src = ""; 
         userPoints++;
-        document.getElementById("pontos").innerHTML = userPoints;
         openModal();
     } else{
         document.getElementById(selectedCards[0].getId()).src = "images/hidden-card.png"; //vira a carta para baixo
@@ -206,7 +259,6 @@ var modal = document.getElementById('simpleModal');
 var modalBtn = document.getElementById('modalBtn');
 var closeBtn = document.getElementsByClassName('closeBtn')[0];
 
-// modalBtn.addEventListener('click', openModal);
 closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', outsideClick);
 
@@ -215,8 +267,25 @@ function openModal(){
   modal.style.display = 'block';
 }
 
+alternativas = ["alternativaA", "alternativaB", "alternativaC", "alternativaD"];
+auxSelectedCard = ""; //variavel auxiliar criada pois quando o submeter a resposta, as cartas selecionadas ja vao estar zeradas
 function showQuestion(){
-    document.getElementById('alternativaA').textContent = selectedCards[0].getQuestion();
+    for(a = 0; a < 4; a++){ //como as cartas são iguais, não faz diferença qual será escolhida para mostrar as perguntas
+        document.getElementById(alternativas[a]).textContent = selectedCards[0].getQuestion(a);
+    }
+    auxSelectedCard = selectedCards[0];
+}
+
+questions = document.getElementById("questoes");
+function checkAnswer(){
+    if(questions.alternative.value == auxSelectedCard.getAnswer()){ //verificando se o valor da alternativa selecionada é o correto
+        alert("Resposta certa!");
+        userPoints += 3;
+    } else{
+        alert("Resposta errada!");
+    }
+    document.getElementById("pontos").innerHTML = userPoints; //escrevendo os pontos na tela
+    closeModal();
 }
 
 function closeModal(){
