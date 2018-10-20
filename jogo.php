@@ -4,14 +4,10 @@ include('verifica_login.php');
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    
 	<meta charset = "utf-8" author = "Guilherme Giazzi, Matheus Lança e André Vinicius">
 	<link rel="stylesheet" type="text/css" href="jogo.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -19,48 +15,58 @@ include('verifica_login.php');
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
-    <!-- <script src="jogo.js"></script> -->
 	<title>Improve your memory - Jogo</title>
+	
+
+	
 </head>
 
 <body>
-<body class="">
-				<nav id="navBar" class="navbar navbar-expand-md bg-dark navbar-dark">
-            <!-- Brand -->
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png"></a>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
-                </li> 
-            </ul>
-            <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-
-                <ul class="navbar-nav ml-auto">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <!-- Brand -->
+                 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
+                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a href="painel.php" class="nav-link">Home</a>
+                      <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
                     </li> 
-                </ul>
-            </div> 
-        </nav>
+                  </ul>
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                  
+                   <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        
+                      <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
+                    
+                      
+                    </li> 
+                  </ul>
+                   <ul class="navbar-nav">
+                    <li class="nav-item">
+                       
+                      <a href="end_session.php" class="nav-link">Sair</a>
+                    </li> 
+                  </ul>
+                </div> 
+              </nav>
 
 		<div id="body"></div>
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	          <span class="closeBtn">&times;</span>
-	          <h2>Pergunta!</h2>
+	          <h2>Essa imagem se refere a:</h2>
 	      </div>
 	      <div class="modal-body">
-			  <form action="">
-			      <input type="radio" name="alternative" value="Alternativa_A"><span id="alternativaA"> Alternativa A</span><br>
-			      <input type="radio" name="alternative"> Alternativa B<br>
-			      <input type="radio" name="alternative" value="Alternativa_C"> Alternativa C<br>
-			      <input type="radio" name="alternative" value="Alternativa_D"> Alternativa D<br>
+			  <form action="" id="questoes">
+			      <input type="radio" name="alternative" value="A"><span id="alternativaA"> Alternativa A</span><br>
+			      <input type="radio" name="alternative" value="B"><span id="alternativaB"> Alternativa B</span><br>
+			      <input type="radio" name="alternative" value="C"><span id="alternativaC"> Alternativa C</span><br>
+			      <input type="radio" name="alternative" value="D"><span id="alternativaD"> Alternativa D</span><br>
 			    </form>
 	      </div>
 	      <div class="modal-footer">
-	        <input type="button" name="" class="button" value="Confirma resposta" onclick="closeModal()">
+	        <input type="button" name="" class="button" value="Confirmar resposta" onclick="checkAnswer()">
 	      </div>
 	    </div>
 	  </div>
@@ -88,6 +94,7 @@ include('verifica_login.php');
 
 	  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
 	  </div>
+
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -123,12 +130,12 @@ include('verifica_login.php');
 
   </div>
 </div>
-    
 	<script src="jogo.js"></script>
 </body>
 <footer>
 	<hr>
 	<p>Jogo desenvolvido por Guilherme Giazzi, Matheus Lança e André Vinicius</p>
+	<p id="idade" style="display:none"> 0 </p>
 </footer>
 
 </html>
