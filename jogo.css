@@ -109,3 +109,17 @@ footer p{
   margin: 0 auto;
   padding-left: 1.2%; 
 }
+
+.hidden-card:hover{
+    border: 2px solid red;
+    border-radius: 50px 20px;
+    cursor:pointer;
+}
+
+
+.hidden-card-idoso:hover{
+    border: 20px solid red;
+    border-radius: 50px 20px;
+    cursor:pointer;
+}
+

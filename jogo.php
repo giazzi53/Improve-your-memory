@@ -16,10 +16,13 @@ include('verifica_login.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
 	<title>Improve your memory - Jogo</title>
+	
+
+	
 </head>
 
-<body class="">
-		<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
                 <!-- Brand -->
                  <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
                  <ul class="navbar-nav ml-auto">
@@ -132,6 +135,7 @@ include('verifica_login.php');
 <footer>
 	<hr>
 	<p>Jogo desenvolvido por Guilherme Giazzi, Matheus Lança e André Vinicius</p>
+	<p id="idade" style="display:none"> 0 </p>
 </footer>
 
 </html>
