@@ -21,40 +21,39 @@ include('verifica_login.php');
 	
 </head>
 
-<body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
-                <!-- Brand -->
-                 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
-                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                      <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
-                    </li> 
-                  </ul>
-                <!-- Navbar links -->
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                  
-                   <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        
-                      <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
-                    
-                      
-                    </li> 
-                  </ul>
-                   <ul class="navbar-nav">
-                    <li class="nav-item">
-                       
-                      <a href="end_session.php" class="nav-link">Sair</a>
-                    </li> 
-                  </ul>
-                </div> 
-              </nav>
+<body class="">
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
+		 <ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+			  <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
+			</li> 
+		  </ul>
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+		  
+		   <ul class="navbar-nav ml-auto">
+			<li class="nav-item">
+				
+			  <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
+			
+			  
+			</li> 
+		  </ul>
+		   <ul class="navbar-nav">
+			<li class="nav-item">
+			   
+			  <a href="end_session.php" class="nav-link">Sair</a>
+			</li> 
+		  </ul>
+		</div> 
+	  </nav>
 
-		<div id="body"></div>
+	<div id="body">
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	          <span class="closeBtn">&times;</span>
 	          <h2>Essa imagem se refere a:</h2>
 	      </div>
 	      <div class="modal-body">
@@ -82,17 +81,18 @@ include('verifica_login.php');
  			
  		</div>
 	  <div id="BtnInstrucoes" class="jumbotron">
-	  		<div class="info">
-				<h1>Pontuação</h1>
-				<h1 id='pontos'>0</h1>
-			</div>
+  		<div class="info text-center Pagination-centered">
+			<h1 id='pontos'>Pontuação: 0</h1>
+		</div>
 
-			<div class="info">
-				<h1>Nível</h1>
-				<h1 id="nivel"></h1>
-			</div>
+		<div class="info text-center Pagination-centered">
+			<h1 id="nivel"></h1>
+		</div>
+		<div class="info text-center Pagination-centered">
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+		</div>
 
-	  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+	  </div>
 	  </div>
 
 <!-- Modal -->
@@ -130,7 +130,19 @@ include('verifica_login.php');
 
   </div>
 </div>
+</div>
+
+<div id="final" class="text-center Pagination-centered jumbotron">
+	<h3>Parabéns!</h3>
+	<br>
+	<h3 id="nivelFinal"></h3>
+	<br>
+	<h3 id="pontuacaoFinal"></h3>
+	<br>
+	<input type="button" id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="location.href='painel.php';" value="Home" />
+</div>
 	<script src="jogo.js"></script>
+
 </body>
 <footer>
 	<hr>
