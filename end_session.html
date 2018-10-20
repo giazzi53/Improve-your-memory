@@ -19,12 +19,10 @@ session_destroy();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="util.css">
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
-    <script src="jogo.js">
-        writePoints();
-    </script>
+    <script src="jogo.js"></script>
   </head>
-<body>
-<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+<body onload="writePoints()">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark" id="nav">
             <!-- Brand -->
             <a class="navbar-brand" href="index.php"><img src="img/logo.png"></a>
             
@@ -35,9 +33,12 @@ session_destroy();
                 </li> 
             </ul>
         </nav>
-	<div class="jumbotron" id="conteudo">
-        <div class="pagination-centered">
-                <h3>Obrigado por acessar Improve Your Memory</h3>
+	<div class="jumbotron" id="conteudo" name="divMaster">
+        <div class="pagination-centered" name="divPontos">
+                <h3>Parabéns!</h3>
+                <h3>Você concluiu o jogo</h3>
+                <h3 id="pontuacao"></h3>
+
 		</div>	
 	</div>
 </body>

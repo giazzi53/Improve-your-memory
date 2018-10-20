@@ -44,6 +44,7 @@ function Card(id, name){ //classe Card
 
 document.getElementsByClassName("info")[0].style = 'display: none';  //retirando o nivel e pts da tela antes de começar o jogo
 document.getElementsByClassName("info")[1].style = 'display: none';
+document.getElementById("final").style = 'display: none';
 
 var level;
 var el2 = document.getElementById('body');
@@ -57,6 +58,7 @@ listHtml = ['</div>',
             '<div id="botoes">',
             '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
 
+var cardsLenght;
 
 jaClicou = false;
 function generateCards(dificuldade){
@@ -68,7 +70,7 @@ function generateCards(dificuldade){
         } else{
             qtdeCartas = 18;
         }
-        document.getElementById("nivel").innerHTML = dificuldade; //escreve o nivel na tela
+        document.getElementById("nivel").innerHTML = "Nível: " + dificuldade; //escreve o nivel na tela
         level = dificuldade;
         jaClicou = true;
         var el = document.getElementById('body');
@@ -136,7 +138,9 @@ function defineCards(){
             questionIdx++; //o índice das perguntas deve ser adicionado a cada par, assim o par de cartas terá a mesma pergunta
         }
     }
+    cardsLenght = cards.length;
 }
+
 
 cardsObject = [];
 userPoints = 0;
@@ -233,11 +237,19 @@ function checkMove(num){
 function checkPair(){
     if(selectedCards[0].getName() == selectedCards[1].getName() &&
        selectedCards[0].getId() != selectedCards[1].getId()){ //se forem cartas iguais, e nao for a mesma carta
-
+        openModal();
         document.getElementById(selectedCards[0].getId()).src = "";  //retira a carta da tela
         document.getElementById(selectedCards[1].getId()).src = ""; 
         userPoints++;
-        openModal();
+        cardsLenght -= 2;
+        // alert(cardsLenght);
+        if (cardsLenght == 0){
+            document.getElementById("body").innerHTML = "";
+            endGame();
+            // window.location.assign("end_session.html");
+            
+        }
+        
     } else{
         document.getElementById(selectedCards[0].getId()).src = "images/hidden-card.png"; //vira a carta para baixo
         document.getElementById(selectedCards[1].getId()).src = "images/hidden-card.png"; 
@@ -279,12 +291,12 @@ function showQuestion(){
 questions = document.getElementById("questoes");
 function checkAnswer(){
     if(questions.alternative.value == auxSelectedCard.getAnswer()){ //verificando se o valor da alternativa selecionada é o correto
-        alert("Resposta certa!");
+        // alert("Resposta certa!");
         userPoints += 3;
     } else{
-        alert("Resposta errada!");
+        // alert("Resposta errada!");
     }
-    document.getElementById("pontos").innerHTML = userPoints; //escrevendo os pontos na tela
+    document.getElementById("pontos").innerHTML = "Pontuação: " + userPoints; //escrevendo os pontos na tela
     closeModal();
 }
 
@@ -296,4 +308,11 @@ function outsideClick(e){
   if(e.target == modal){
     modal.style.display = 'none';
   }
+}
+
+function endGame(){
+    document.getElementById("nivelFinal").innerHTML = "Você concluiu o nível: " + level;
+    document.getElementById("pontuacaoFinal").innerHTML = "Pontuação: " + userPoints;
+    document.getElementById("final").style = 'display: block';
+
 }

@@ -40,7 +40,7 @@
 		</div> 
 	  </nav>
 
-		<div id="body"></div>
+	<div id="body">
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">
 	      <div class="modal-header">
@@ -72,17 +72,17 @@
  			
  		</div>
 	  <div id="BtnInstrucoes" class="jumbotron">
-	  		<div class="info">
-				<h1>Pontuação</h1>
-				<h1 id='pontos'>0</h1>
-			</div>
+  		<div class="info text-center Pagination-centered">
+			<h1 id='pontos'>Pontuação: 0</h1>
+		</div>
 
-			<div class="info">
-				<h1>Nivel</h1>
-				<h1 id="nivel"></h1>
-			</div>
-
-	  	<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+		<div class="info text-center Pagination-centered">
+			<h1 id="nivel"></h1>
+		</div>
+		<dir class="info text-center Pagination-centered">
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
+		</dir>
+	  	
 	  </div>
 
 <!-- Modal -->
@@ -120,7 +120,19 @@
 
   </div>
 </div>
+</div>
+
+<div id="final" class="text-center Pagination-centered jumbotron">
+	<h3>Parabéns!</h3>
+	<br>
+	<h3 id="nivelFinal"></h3>
+	<br>
+	<h3 id="pontuacaoFinal"></h3>
+	<br>
+	<input type="button" id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="location.href='index.html';" value="Home" />
+</div>
 	<script src="jogo.js"></script>
+
 </body>
 <footer>
 	<hr>
