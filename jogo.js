@@ -18,6 +18,7 @@ function Card(id, name){ //classe Card
     this.id = id;
     this.name = name;
     this.questions = [];
+    this.answer = "";
     this.getId = function(){
         return this.id;
     };
@@ -30,8 +31,14 @@ function Card(id, name){ //classe Card
     this.setQuestion = function(question){
         this.questions.push(question);
     };
+    this.getAnswer = function(){
+        return this.answer;
+    };
+    this.setAnswer = function(resp){
+        this.answer = resp;
+    };
     this.getInfo = function(){
-        return this.id + " " + this.name + " " + this.question;
+        return this.id + " " + this.name + " " + this.question + " " + this.answer;
     };
 }
 
@@ -49,9 +56,7 @@ listHtml = ['</div>',
             '<button id="dificil" class="btn btn-primary" onclick="generateCards('+dificil+')">Dificil</button>',
             '<div id="botoes">',
             '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
-// for(content2 of listHtml){
-//     el2.insertAdjacentHTML('afterbegin', content2); //loop para inserir o codigo HTML que vai criar os botoes na tela
-// }
+
 
 jaClicou = false;
 function generateCards(dificuldade){
@@ -122,9 +127,10 @@ function defineCards(){
 
     aux = 0;
     questionIdx = 0;
-    for(card of cardsObject){ //gerando perguntas para cada carta
+    for(card of cardsObject){ //gerando perguntas e respostas para cada carta
         aux++;
-        generateQuestions(card, questionIdx); 
+        generateQuestion(card, questionIdx); 
+        generateAnswer(card, questionIdx);
         if(aux == 2){
             aux = 0;
             questionIdx++; //o índice das perguntas deve ser adicionado a cada par, assim o par de cartas terá a mesma pergunta
@@ -183,15 +189,21 @@ listQuestions =[[" Queda da bastilha, que aconteceu na França quando o povo se 
                  " Nenhuma das opções acima"]
             ];
 
-function generateQuestions(card, idx){ //adiciona as opções para cada carta
+
+function generateQuestion(card, idx){ //adiciona as opções para cada carta
     for(a = 0; a < 4; a++){
         card.setQuestion(listQuestions[idx][a]);
     }
 }
 
+answers = ["A", "B", "C", "A", "C", "A", "B", "A", "C"];
+function generateAnswer(card, idx){ //definindo as respostas de cada carta
+    card.setAnswer(answers[idx]);
+}
+
 function revealCard(num){ //vira a carta
     selectedCard = findCard(num);
-    document.getElementById(num).src = selectedCard.getName(); //substitui o nome da carta
+    document.getElementById(num).src = selectedCard.getName(); //substitui o nome da carta, ou seja, vira pra cima
     selectedCards.push(selectedCard); //adiciona a carta selecionada na lista de cartas selecionadas
 }
 
@@ -225,7 +237,6 @@ function checkPair(){
         document.getElementById(selectedCards[0].getId()).src = "";  //retira a carta da tela
         document.getElementById(selectedCards[1].getId()).src = ""; 
         userPoints++;
-        document.getElementById("pontos").innerHTML = userPoints;
         openModal();
     } else{
         document.getElementById(selectedCards[0].getId()).src = "images/hidden-card.png"; //vira a carta para baixo
@@ -257,11 +268,24 @@ function openModal(){
 }
 
 alternativas = ["alternativaA", "alternativaB", "alternativaC", "alternativaD"];
-
+auxSelectedCard = ""; //variavel auxiliar criada pois quando o submeter a resposta, as cartas selecionadas ja vao estar zeradas
 function showQuestion(){
     for(a = 0; a < 4; a++){ //como as cartas são iguais, não faz diferença qual será escolhida para mostrar as perguntas
         document.getElementById(alternativas[a]).textContent = selectedCards[0].getQuestion(a);
     }
+    auxSelectedCard = selectedCards[0];
+}
+
+questions = document.getElementById("questoes");
+function checkAnswer(){
+    if(questions.alternative.value == auxSelectedCard.getAnswer()){ //verificando se o valor da alternativa selecionada é o correto
+        alert("Resposta certa!");
+        userPoints += 3;
+    } else{
+        alert("Resposta errada!");
+    }
+    document.getElementById("pontos").innerHTML = userPoints; //escrevendo os pontos na tela
+    closeModal();
 }
 
 function closeModal(){
