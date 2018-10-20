@@ -46,24 +46,13 @@ document.getElementsByClassName("info")[0].style = 'display: none';  //retirando
 document.getElementsByClassName("info")[1].style = 'display: none';
 
 var level;
-var el2 = document.getElementById('body');
-facil = 'facil';
-medio = 'medio';
-dificil = 'dificil';
-listHtml = ['</div>',
-            '<button id="facil" class="btn btn-primary" onclick="generateCards('+facil+')">Facil</button>', 
-            '<button id="medio" class="btn btn-primary" onclick="generateCards('+medio+')">Medio</button>',
-            '<button id="dificil" class="btn btn-primary" onclick="generateCards('+dificil+')">Dificil</button>',
-            '<div id="botoes">',
-            '<h1 id="levelSelect" class="jumbotron text-center">Selecione um nível: </h1>'];
-
 
 jaClicou = false;
 function generateCards(dificuldade){
     if(!jaClicou){
-        if(dificuldade == "facil"){
+        if(dificuldade == "Fácil"){
             qtdeCartas = 10;
-        } else if(dificuldade == "medio"){
+        } else if(dificuldade == "Médio"){
             qtdeCartas = 14;
         } else{
             qtdeCartas = 18;
@@ -102,9 +91,9 @@ function defineCards(){
     "images/steve-jobs.png", "images/steve-jobs.png",
      "images/hitler.png", "images/hitler.png"];
 
-    if(level == "facil"){
+    if(level == "Fácil"){
         //sem ação, todas as cartas ja estao na lista
-    } else if(level == "medio"){ 
+    } else if(level == "Médio"){ 
         cards.push("images/torres-gemeas.jpg");
         cards.push("images/torres-gemeas.jpg");
         cards.push("images/14bis.jpg");
@@ -234,8 +223,8 @@ function checkPair(){
     if(selectedCards[0].getName() == selectedCards[1].getName() &&
        selectedCards[0].getId() != selectedCards[1].getId()){ //se forem cartas iguais, e nao for a mesma carta
 
-        document.getElementById(selectedCards[0].getId()).src = "";  //retira a carta da tela
-        document.getElementById(selectedCards[1].getId()).src = ""; 
+        document.getElementById(selectedCards[0].getId()).style.display = 'none'; //retira a carta da tela
+        document.getElementById(selectedCards[1].getId()).style.display = 'none';
         userPoints++;
         openModal();
     } else{
@@ -257,10 +246,6 @@ function findCard(id){ //encontrando a carta selecionada
 
 var modal = document.getElementById('simpleModal');
 var modalBtn = document.getElementById('modalBtn');
-var closeBtn = document.getElementsByClassName('closeBtn')[0];
-
-closeBtn.addEventListener('click', closeModal);
-window.addEventListener('click', outsideClick);
 
 function openModal(){
   showQuestion();
@@ -290,10 +275,4 @@ function checkAnswer(){
 
 function closeModal(){
   modal.style.display = 'none';
-}
-
-function outsideClick(e){
-  if(e.target == modal){
-    modal.style.display = 'none';
-  }
 }
