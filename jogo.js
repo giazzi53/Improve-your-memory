@@ -285,10 +285,10 @@ function showQuestion(){
 questions = document.getElementById("questoes");
 function checkAnswer(){
     if(questions.alternative.value == auxSelectedCard.getAnswer()){ //verificando se o valor da alternativa selecionada é o correto
-        // alert("Resposta certa!");
+        alert("Resposta certa!");
         userPoints += 3;
     } else{
-        // alert("Resposta errada!");
+        alert("Resposta errada!");
     }
     document.getElementById("pontos").innerHTML = "Pontuação: " + userPoints; //escrevendo os pontos na tela
     closeModal();
