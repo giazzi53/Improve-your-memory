@@ -4,7 +4,6 @@ include('verifica_login.php');
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,48 +15,43 @@ include('verifica_login.php');
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <meta name="description" content="Exercite sua memória e previna-se contra o Alzheimer e outras doenças degenerativas">
 	<title>Improve your memory - Jogo</title>
-	
-
-	
+	<script>
+		document.addEventListener('click', alerta(){alert("fala gakera")});
+	</script>
 </head>
 
-<body class="">
+<body>
 	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
 		<!-- Brand -->
-		 <a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
-		 <ul class="navbar-nav ml-auto">
+		<a class="navbar-brand" href="painel.php"><img src="img/logo.png"></a>
+		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-			  <span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
+				<span class="nav-link" href="#">IMPROVE YOUR MEMORY</span>
 			</li> 
-		  </ul>
+		</ul>
 		<!-- Navbar links -->
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-		  
-		   <ul class="navbar-nav ml-auto">
-			<li class="nav-item">
-				
-			  <span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>
-			
-			  
-			</li> 
+		  <ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<span class="nav-link">Olá, <?php echo $_SESSION['usuario'];?></span>  
+				</li> 
 		  </ul>
-		   <ul class="navbar-nav">
-			<li class="nav-item">
-			   
-			  <a href="end_session.php" class="nav-link">Sair</a>
-			</li> 
+		  <ul class="navbar-nav">
+				<li class="nav-item">
+					<a href="end_session.php" class="nav-link">Sair</a>
+				</li> 
 		  </ul>
 		</div> 
-	  </nav>
+	</nav>
 
 	<div id="body">
-	  <div id="simpleModal" class="modal">
+		<div id="simpleModal" class="modal">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	          <h2>Essa imagem se refere a:</h2>
 	      </div>
 	      <div class="modal-body">
-			  <form action="" id="questoes">
+			  	<form action="" id="questoes">
 			      <input type="radio" name="alternative" value="A"><span id="alternativaA"> Alternativa A</span><br>
 			      <input type="radio" name="alternative" value="B"><span id="alternativaB"> Alternativa B</span><br>
 			      <input type="radio" name="alternative" value="C"><span id="alternativaC"> Alternativa C</span><br>
@@ -74,63 +68,53 @@ include('verifica_login.php');
  			<h1 id="levelSelect" >Selecione um nível: </h1>
  			<br><br>
 			<div id="botoes row Pagination-centered">	
-	            <button id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Fácil')">Fácil</button> 
-	            <button id="medio" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Médio')">Médio</button>
-	            <button id="dificil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Difícil')">Difícil</button>
-            </div>
- 			
+	      <button id="facil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Fácil')">Fácil</button> 
+	      <button id="medio" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Médio')">Médio</button>
+	      <button id="dificil" class="btn btn-primary col-md-4 col-sm-12" onclick="generateCards('Difícil')">Difícil</button>
+      </div>
  		</div>
 	  <div id="BtnInstrucoes" class="jumbotron">
   		<div class="info text-center Pagination-centered">
-			<h1 id='pontos'>Pontuação: 0</h1>
-		</div>
+				<h1 id='pontos'>Pontuação: 0</h1>
+			</div>
 
-		<div class="info text-center Pagination-centered">
-			<h1 id="nivel"></h1>
-		</div>
-		<div class="info text-center Pagination-centered">
-			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Instruções</button>
-		</div>
+			<div class="info text-center Pagination-centered">
+				<h1 id="nivel"></h1>
+			</div>
+			
+			<button type="button" class="btn btn-info btn-lg"onclick="openmodalInstrucoes()"> Instruções </button> 
+			
+			<div id="modalInstrucoes" class="modal">
+					<div class="modal-content">
+						<div class="modal-header">
+								<h2 >Caro <?php echo $_SESSION['usuario'];?> </h2>
+						</div>
+						<div class="modal-body">
+								<p>Este jogo tem o intuito de manter a memória dos usuários ativa, sejam eles jovens que ainda estão cursando o Ensino Médio, universitários ou idosos, através de um jogo da memória da história da humanidade.</p>
+
+								<p>Para começar a jogar, clique em voltar e depois em iniciar. Você deverá selecionar um nível de dificuldade, entre fácil, médio e difícil.</p>
+						
+								<p>Serão disponibilizadas cartas com imagens de acontecimentos históricos ao longo da humanidade, que estarão viradas para baixo. O número de cartas será definido de acordo com o nível escolhido.</p>
+						
+								<p>Para selecionar uma carta, basta escolher uma e clicá-la. Você deverá encontrar o par desta carta</p>
+						
+								<p>Ao encontrar um par, uma pergunta referente à imagem aparecerá. O objetivo é fazer o maior número de pontos dentro do tempo determinado.</p>
+						
+								<h3>Entendendo a pontuação:</h3>
+						
+								<p>Para cada par encontrado, você ganhará um ponto.</p>
+						
+								<p>Para cada pergunta referente ao acontecimento respondida corretamente, você ganhará 3 pontos.</p>
+						
+						</div>
+						<div class="modal-footer">
+								<button type="button" class="btn btn-default" onclick="closemodalInstrucoes()">Fechar</button>
+						</div>
+					</div>
+			</div>
 
 	  </div>
-	  </div>
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Caro <?php echo $_SESSION['usuario'];?></h4>
-          
-      </div>
-      <div class="modal-body">
-        <p>Este jogo tem o intuito de manter a memória dos usuários ativa, sejam eles jovens que ainda estão cursando o Ensino Médio, universitários ou idosos, através de um jogo da memória da história da humanidade</p>
-
-		<p>Para começar a jogar, clique em voltar e depois em iniciar. Você deverá selecionar um nível de dificuldade, entre fácil, médio e difícil</p>
-
-		<p>Serão disponibilizadas cartas com imagens de acontecimentos históricos ao longo da humanidade, que estarão viradas para baixo. O número de cartas será definido de acordo com o nível escolhido</p>
-
-		<p>Para selecionar uma carta, basta escolher uma e clicá-la. Você deverá encontrar o par desta carta</p>
-
-		<p>Ao encontrar um par, uma pergunta referente à imagem aparecerá. O objetivo é fazer o maior número de pontos dentro do tempo determinado</p>
-
-	<h2>Entendendo a pontuação:</h2>
-
-		<p>Para cada par encontrado, você ganhará um ponto</p>
-
-		<p>Para cada pergunta referente ao acontecimento respondida corretamente, você ganhará 3 pontos</p>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-</div>
 
 <div id="final" class="text-center Pagination-centered jumbotron">
 	<h3>Parabéns!</h3>
@@ -143,11 +127,19 @@ include('verifica_login.php');
 </div>
 	<script src="jogo.js"></script>
 
-</body>
+
 <footer>
 	<hr>
 	<p>Jogo desenvolvido por Guilherme Giazzi, Matheus Lança e André Vinicius</p>
-	<p id="idade" style="display:none"> 0 </p>
 </footer>
+<script>
+		document.getElementById('modalInstrucoes').addEventListener("click", function(){
+			var modalInstrucoesHTML = document.getElementById('modalInstrucoes');
+			if(modalInstrucoesHTML.style.display == 'block'){
+				modalInstrucoesHTML.style.display = 'none';	
+			}
+		});
+</script>
 
+</body>
 </html>
