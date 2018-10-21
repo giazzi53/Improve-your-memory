@@ -257,7 +257,16 @@ function findCard(id){ //encontrando a carta selecionada
 }
 
 var modal = document.getElementById('simpleModal');
+var modalInstrucoes = document.getElementById('modalInstrucoes');
 var modalBtn = document.getElementById('modalBtn');
+
+function openmodalInstrucoes(){
+    modalInstrucoes.style.display = 'block';
+  }
+
+  function closemodalInstrucoes(){
+    modalInstrucoes.style.display = 'none';
+  }
 
 function openModal(){
   showQuestion();
@@ -301,3 +310,5 @@ function endGame(){
     document.getElementById("final").style = 'display: block';
 
 }
+
+
