@@ -97,25 +97,25 @@ include('verifica_login.php');
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Caro <?php echo $_SESSION['usuario'];?></h4>
+        <h6 class="modal-title">Caro <?php echo $_SESSION['usuario'];?></h6>
           
       </div>
       <div class="modal-body">
-        <p>Este jogo tem o intuito de manter a memória dos usuários ativa, sejam eles jovens que ainda estão cursando o Ensino Médio, universitários ou idosos, através de um jogo da memória da história da humanidade</p>
+        <p style="font-size:14px">Este jogo tem o intuito de manter a memória dos usuários ativa, sejam eles jovens que ainda estão cursando o Ensino Médio, universitários ou idosos, através de um jogo da memória da história da humanidade</p>
 
-		<p>Para começar a jogar, clique em voltar e depois em iniciar. Você deverá selecionar um nível de dificuldade, entre fácil, médio e difícil</p>
+		<p style="font-size:14px">Para começar a jogar, clique em voltar e depois em iniciar. Você deverá selecionar um nível de dificuldade, entre fácil, médio e difícil</p>
 
-		<p>Serão disponibilizadas cartas com imagens de acontecimentos históricos ao longo da humanidade, que estarão viradas para baixo. O número de cartas será definido de acordo com o nível escolhido</p>
+		<p style="font-size:14px">Serão disponibilizadas cartas com imagens de acontecimentos históricos ao longo da humanidade, que estarão viradas para baixo. O número de cartas será definido de acordo com o nível escolhido</p>
 
-		<p>Para selecionar uma carta, basta escolher uma e clicá-la. Você deverá encontrar o par desta carta</p>
+		<p style="font-size:14px">Para selecionar uma carta, basta escolher uma e clicá-la. Você deverá encontrar o par desta carta</p>
 
-		<p>Ao encontrar um par, uma pergunta referente à imagem aparecerá. O objetivo é fazer o maior número de pontos dentro do tempo determinado</p>
+		<p style="font-size:14px">Ao encontrar um par, uma pergunta referente à imagem aparecerá. O objetivo é fazer o maior número de pontos dentro do tempo determinado</p>
 
-	<h2>Entendendo a pontuação:</h2>
+	<h6>Entendendo a pontuação:</h6>
 
-		<p>Para cada par encontrado, você ganhará um ponto</p>
+		<p style="font-size:14px">Para cada par encontrado, você ganhará um ponto</p>
 
-		<p>Para cada pergunta referente ao acontecimento respondida corretamente, você ganhará 3 pontos</p>
+		<p style="font-size:14px">Para cada pergunta referente ao acontecimento respondida corretamente, você ganhará 3 pontos</p>
 
       </div>
       <div class="modal-footer">
