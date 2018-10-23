@@ -212,7 +212,7 @@ function checkMove(num){
 
                 clicks--; //volta um click, jogada inválida
                 selectedCards.pop(); //retira a ultima carta selecionada, jogada inválida 
-                alert("Não pode clicar na mesma carta");   
+                openModalMesmaCarta(); 
                 jogadaValida = false; //invalida a jogada
             }
 
@@ -258,7 +258,35 @@ function findCard(id){ //encontrando a carta selecionada
 
 var modal = document.getElementById('simpleModal');
 var modalInstrucoes = document.getElementById('modalInstrucoes');
+var modalRespCerta = document.getElementById('modalRespCerta');
+var modalMesmaCarta = document.getElementById('modalMesmaCarta');
+var modalRespErrada = document.getElementById('modalRespErrada');
 var modalBtn = document.getElementById('modalBtn');
+
+function openModalMesmaCarta(){
+    modalMesmaCarta.style.display = 'block';
+  }
+
+function closeModalMesmaCarta(){
+    modalMesmaCarta.style.display = 'none';
+  }
+
+function openModalRespostaCerta(){
+    modalRespCerta.style.display = 'block';
+  }
+
+function closeModalRespostaCerta(){
+    modalRespCerta.style.display = 'none';
+  }
+
+function openModalRespostaErrada(resposta){
+    document.getElementById('respErrada').innerHTML = "A alternativa correta era: "+ resposta;
+    modalRespErrada.style.display = 'block';
+  }
+
+function closeModalRespostaErrada(){
+    modalRespErrada.style.display = 'none';
+  }
 
 function openmodalInstrucoes(){
     modalInstrucoes.style.display = 'block';
@@ -285,13 +313,31 @@ function showQuestion(){
 questions = document.getElementById("questoes");
 function checkAnswer(){
     if(questions.alternative.value == auxSelectedCard.getAnswer()){ //verificando se o valor da alternativa selecionada é o correto
-        alert("Resposta certa!");
+        // alert("Resposta certa!");
+        openModalRespostaCerta();
         userPoints += 3;
+        
     } else{
-        alert("Resposta errada!");
+        idx = 0;
+        if(auxSelectedCard.getAnswer() == "A"){
+            idx = 0;
+        } else if (auxSelectedCard.getAnswer() == "B"){
+            idx = 1;
+        } else if(auxSelectedCard.getAnswer() == "C"){
+            idx = 2;
+        }
+
+        
+        openModalRespostaErrada(auxSelectedCard.getQuestion(idx));
+        // alert("Resposta errada!");
     }
+    document.getElementById('rad1').checked = false;
+    document.getElementById('rad2').checked = false;
+    document.getElementById('rad3').checked = false;
+    document.getElementById('rad4').checked = false;
     document.getElementById("pontos").innerHTML = "Pontuação: " + userPoints; //escrevendo os pontos na tela
     closeModal();
+
 }
 
 function closeModal(){

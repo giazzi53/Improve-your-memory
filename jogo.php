@@ -54,10 +54,10 @@ include('verifica_login.php');
 	      </div>
 	      <div class="modal-body">
 			  <form action="" id="questoes">
-			      <input type="radio" name="alternative" value="A"><span id="alternativaA"> Alternativa A</span><br>
-			      <input type="radio" name="alternative" value="B"><span id="alternativaB"> Alternativa B</span><br>
-			      <input type="radio" name="alternative" value="C"><span id="alternativaC"> Alternativa C</span><br>
-			      <input type="radio" name="alternative" value="D"><span id="alternativaD"> Alternativa D</span><br>
+			      <input type="radio" id="rad1" name="alternative" value="A"><span id="alternativaA"> Alternativa A</span><br>
+			      <input type="radio" id="rad2" name="alternative" value="B"><span id="alternativaB"> Alternativa B</span><br>
+			      <input type="radio" id="rad3" name="alternative" value="C"><span id="alternativaC"> Alternativa C</span><br>
+			      <input type="radio" id="rad4" name="alternative" value="D"><span id="alternativaD"> Alternativa D</span><br>
 			    </form>
 	      </div>
 	      <div class="modal-footer">
@@ -65,7 +65,71 @@ include('verifica_login.php');
 	      </div>
 	    </div>
 	  </div>
- 		
+ 	
+	  <div id="modalRespCerta" class="modal">
+	    <div class="modal-content text-center">
+	      <div class="modal-header">
+	          <h2>Resposta Correta</h2>
+	      </div>
+	      <div class="modal-body">
+			<h2>Parabéns você acertou a resposta!</h2>
+	      </div>
+	      <div class="modal-footer">
+	        <input type="button" name="" class="button" value="Fechar" onclick="closeModalRespostaCerta()">
+	      </div>
+	    </div>
+	  </div>
+
+	  <div id="modalMesmaCarta" class="modal">
+	    <div class="modal-content text-center">
+	      <div class="modal-header">
+	          <h2>Atenção!</h2>
+	      </div>
+	      <div class="modal-body">
+			<h2>Não é permitido selecionar a mesma carta!</h2>
+	      </div>
+	      <div class="modal-footer">
+	        <input type="button" name="" class="button" value="Fechar" onclick="closeModalMesmaCarta()">
+	      </div>
+	    </div>
+	  </div>
+
+
+	  <div id="modalRespErrada" class="modal">
+	    <div class="modal-content text-center">
+	      <div class="modal-header">
+	          <h2>Resposta Errada</h2>
+	      </div>
+	      <div class="modal-body">
+			  <h2 id="respErrada"></h2>
+	      </div>
+	      <div class="modal-footer">
+	        <input type="button" name="" class="button" value="Fechar" onclick="closeModalRespostaErrada()">
+	      </div>
+	    </div>
+	  </div>
+ 	
+	  <!-- <div id="modalRespCerta" class="modal">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	          <h2>Resposta Correta!</h2>
+	      </div>
+	      <div class="modal-body">
+			  <h2>Parabéns você acertou a resposta!</h2>
+	      </div>
+	  </div>
+
+	  <div id="modalRespErrada" class="modal">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	          <h2>Resposta Incorreta</h2>
+	      </div>
+	      <div class="modal-body">
+			  <h2 id="respErrada"></h2>
+	      </div>
+	    </div>
+	  </div> -->
+
  		<div id="divLevel" class="jumbotron text-center Pagination-centered"> 
  			<h1 id="levelSelect" >Selecione um nível: </h1>
  			<br><br>
@@ -89,6 +153,7 @@ include('verifica_login.php');
 		</div>
 
 	  </div>
+
 
 <!-- Modal -->
 <div id="modalInstrucoes" class="modal" role="dialog">
