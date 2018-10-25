@@ -46,6 +46,8 @@ include('verifica_login.php');
 		</div> 
 	  </nav>
 
+	  <h1></h1>
+
 	<div id="body">
 	  <div id="simpleModal" class="modal">
 	    <div class="modal-content">

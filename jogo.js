@@ -14,6 +14,8 @@ function shuffle(array) { //funcao de embaralhar as cartas
     return array;
 }
 
+var a;
+
 function Card(id, name){ //classe Card
     this.id = id;
     this.name = name;
