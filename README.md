@@ -1,2 +1,2 @@
 # Improve-your-memory
-Improve your memory foi um projeto para a faculdade desenvolvido com o auxilio dos meus amigigos André Vinicius(https://github.com/andrevinicius201) e Matheus Lança(https://github.com/MathLanca)
+Improve your memory foi um projeto para a faculdade desenvolvido com o auxílio de André Vinicius(https://github.com/andrevinicius201) e Matheus Lança(https://github.com/MathLanca). O intuito do projeto era desenvolver um jogo em que os usuários exercitassem sua memória, por isso foi feito um jogo da memória com imagens de acontecimentos históricos e com perguntas sobre esses acontecimentos.
